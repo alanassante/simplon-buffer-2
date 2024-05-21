@@ -5,12 +5,12 @@
 #}
 
 <section class="block-horizontal-steps {{ fields.className }}{% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
-	<div class="container">
+	<div class="container {% if fields.steps|length is even %}even{% endif %}" style="--total:{{((fields.steps|length + 1) / 2)|number_format(0)}}">
 	        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div>  
 		{% if fields.title %}
 		<h2 class="wrapper-title">{{fields.title}}</h2>
 		{% endif %}
-		<div class="responsive-display" style="--total:{{fields.steps|length}}">
+		<div class="responsive-display">
 			{% for item in fields.steps %}
 				<div class="step">
 					<p class="index">{{ loop.index }}</p>
@@ -18,8 +18,8 @@
 				</div>
 			{% endfor %}		
 		</div>
-		<div class="top" >
-			
+		<div class="top">		
+			<div class="empty"></div>
 			{% for item in fields.steps %}
 				{% if (loop.index is even) %}
 					<div class="step">
@@ -29,8 +29,8 @@
 				{% endif %}
 			{% endfor %}	
 		</div>
-		<div class="bottom" style="--total:{{((fields.steps|length - 1) / 2)|number_format(0)}}">
-			
+		<div class="bottom " >
+
 			{% for item in fields.steps %}
 				{% if (loop.index is odd) %}
 					<div class="step">
