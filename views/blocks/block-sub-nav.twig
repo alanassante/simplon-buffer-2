@@ -1,0 +1,18 @@
+{#
+/**
+ * Block Name: Sub nav
+ */
+#}
+
+<section class="block-sub-nav {{ fields.className }}{% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
+	<div class="container">
+		{% for item in fields.links %}
+			{% if item.link.url %}
+				<a href="{{item.link.url}}" class="link reversed">{{item.link.title}}</a>
+			{% endif %}
+		{% endfor %}
+		{% if fields.cta.url %}
+			<a href="{{fields.cta.url}}" class="cta secondary">{{fields.cta.title}}</a>
+		{% endif %}	
+	</div>
+</section>

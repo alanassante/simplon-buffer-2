@@ -1,0 +1,10 @@
+section.block-sub-nav {
+  padding: 20px 0px;
+  background-color: rgba(var(--bg-variant-light-inverse), 1);
+  .container {
+    gap: 75px;
+  }
+  .cta {
+    margin-left: auto;
+  }
+}

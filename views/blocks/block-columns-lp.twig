@@ -1,0 +1,36 @@
+{#
+/**
+ * Block Name: Texte & image
+ */
+#}
+<section class="block-columns-lp {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container regular {% if fields.reversed %}reversed{% endif %}">
+
+
+        <div class="left side">
+            {% if fields.content_left %}
+                <div class="content">
+                    {{fields.content_left}}
+                </div>
+            {% endif %}
+            {% if fields.button_left.url %}
+                <a href="{{ fields.button_left.url }}" {% if fields.button_left.target %}target="{{ fields.button_left.target }}"{% endif %} {% if fields.button_left.target %}rel="noopener"{% endif %} class="cta {{ fields.button_left_class }}">
+                    <span>{{ fields.button_left.title }}</span>
+                </a>
+            {% endif %}
+        </div> 
+
+        <div class="right side">
+            {% if fields.content_right %}
+                <div class="content">
+                    {{fields.content_right}}
+                </div>
+            {% endif %}
+            {% if fields.button_right.url %}
+                <a href="{{ fields.button_right.url }}" {% if fields.button_right.target %}target="{{ fields.button_right.target }}"{% endif %} {% if fields.button_right.target %}rel="noopener"{% endif %} class="cta {{  fields.button_right_class }}">
+                    <span>{{ fields.button_right.title }}</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>

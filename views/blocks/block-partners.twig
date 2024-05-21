@@ -1,0 +1,36 @@
+{#
+/**
+ * Block Name: Partners
+ */
+#}
+<section class="block-partners {{fields.style}} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container {% if fields.reversed %}reversed{% endif %}">
+        {% if fields.text_content %}
+        <div class="text-content">
+            {{fields.text_content}}
+            {% if fields.button.url %}
+                <a href="{{fields.button.url}}" class="cta {{fields.button_style}}">{{fields.button.title}}</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="logos">
+        {% for item in fields.logos %}
+            {% if Image(item.logo).src %}
+            <a href="{{ item.link.url }}" {% if item.link.target %}target="{{ item.link.target }}"{% endif %} {% if item.link.target %}rel="noopener"{% endif %}> 
+                <picture class="logo">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(item.logo).src|towebp }}, {{ Image(item.logo).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(item.logo).src|tojpg }}, {{ Image(item.logo).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img src="{{ Image(item.logo).src }}" width="{{ Image(item.logo).width }}" height="{{ Image(item.logo).height }}" loading="lazy" alt="{{ Image(item.logo).alt }}" />
+                </picture>
+            </a>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+</section>

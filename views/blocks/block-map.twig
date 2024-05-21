@@ -1,0 +1,59 @@
+{#
+/**
+ * Block Name: Map
+ */
+#}
+{% set random_id = random() %}
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+<section class="block-map {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+        {% if fields.title %}
+            <h2 class="title">{{fields.title}}</h2>
+        {% endif %}
+
+            <div class="nav-bar">
+                
+                {% for map in fields.maps_contexts %}
+                    <h3 class="map-title {% if fields.maps_contexts|length < 2 %}solo{% endif %} {% if loop.index == 1 %}active{% endif %}" data-title="{{map.title|lower}}" data-map="{{map.adress_url}}" data-long={{map.center_long}} data-lat={{map.center_lat}} data-zoom="{{map.zoom}}" data-maxzoom="{{map.maxzoom}}" data-zoomresponsive="{{map.zoomresponsive}}">{{map.title}}</h3>
+                {% endfor %}
+                
+            </div>
+        
+        <div id="map-wrapper-{{random_id}}" 
+            class="map-wrapper" 
+            data-icon-default="{{map_icon_default}}" 
+            data-icon-corp="{{fields.map_icon_corp}}" 
+            data-icon="{{fields.map_icon}}"> 
+            <div class="veil"></div>
+        </div>
+        
+        <div class="swiper-nav">
+            <div class="prev"></div>
+            <div class="next"></div>
+        </div>
+        
+        <div class="slide-buffer"></div>
+        <div class="map-swiper">
+            <div class="veil"></div>
+            <div class="swiper-wrapper">
+                {% for map in fields.maps_contexts %}
+                    {% for campus in map.campus_to_display %}
+                        {% set campus_lat = campus.address_url|split('@')[1]|split(',')[0] %}
+                        {% set campus_long = campus.address_url|split('@')[1]|split(',')[1] %}
+                        <div class="swiper-slide" data-map-title="{{map.title|lower}}" data-long="{{campus_long}}" data-lat="{{campus_lat}}">
+                            <h4 class="title">{{ Post(campus).title }}</h4>
+                            <p class="address">{{ campus.address }}</p>
+                            {% if campus.cta.url %}
+                                <a href="{{ campus.cta.url }}" {% if campus.cta.target %}target="{{ campus.cta.target }}"{% endif %} {% if campus.cta.target %}rel="noopener"{% endif %} class="cta secondary">
+                                    <span class="cta-label">{{ campus.cta.title }}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,53 @@
+{#
+/**
+ * Block Name: Thumbnails
+ */
+#}
+
+<section class="block-thumbnails {% if fields.style == "black" %} black{% endif %}{% if fields.reversed %} reversed{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container regular">
+
+    <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+
+        <div class="top-bar">
+            {% if fields.title %}
+                <h2 class="title">{{fields.title}}</h2>
+            {% endif %}
+            {% if fields.button.url %}
+                <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta primary">
+                    {{ fields.button.title }}
+                </a>
+            {% endif %}
+        </div>
+        <div class="thumbnails {% if fields.thumbnails|length == 3  %}triplet{% endif %}">
+            {% for item in fields.thumbnails %}
+            <a href="{{ item.button.url }}" {% if item.button.target %}target="{{ item.button.target }}"{% endif %} {% if item.button.target %}rel="noopener"{% endif %} class="thumbnail">
+                {% if item.picto %}
+                    <picture class="thumbnail-picto">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(item.picto).src|towebp }}, {{ Image(item.picto).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(item.picto).src|tojpg }}, {{ Image(item.picto).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(item.picto).src }}" width="{{ Image(item.picto).width }}" height="{{ Image(item.picto).height }}" loading="lazy" alt="{{ Image(item.picto).alt }}" />
+                    </picture>
+                {% endif %}
+                {% if item.title %}
+                    <h3 class="thumbnail-title">{{item.title}}</h3>
+                {% endif %}
+                {% if item.description %}
+                    <p class="thumbnail-description">{{item.description}}</p>
+                {% endif %}
+                {% if item.button.url %}
+                <p  class="cta secondary">
+                    <span>{{ item.button.title }}</span>
+                </p>
+                {% endif %}
+            </a>  
+            {% endfor %}
+        </div>
+    </div>
+</section>

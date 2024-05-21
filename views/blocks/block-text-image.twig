@@ -1,0 +1,39 @@
+{#
+/**
+ * Block Name: Texte & image
+ */
+#}
+<section class="block-text-image {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container regular {% if fields.reversed %}reversed{% endif %}">
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+
+        {% if fields.picture %}
+            <picture class="left">
+                <source
+                type="image/webp"
+                srcset="{{ Image(fields.picture).src|towebp }}, {{ Image(fields.picture).src|retina(2)|towebp }} 2x"
+                >
+                <source
+                type="image/jpeg"
+                srcset="{{ Image(fields.picture).src|tojpg }}, {{ Image(fields.picture).src|retina(2)|tojpg }} 2x"
+                >
+                <img class="fit-cover" src="{{ Image(fields.picture).src }}" width="{{ Image(fields.picture).width }}" height="{{ Image(fields.picture).height }}" loading="lazy" alt="{{ Image(fields.picture).alt }}" />
+            </picture>
+        {% endif %}
+
+
+        <div class="right">
+            {% if fields.description %}
+                <div class="text-content">
+                    {{fields.description}}
+                </div>
+            {% endif %}
+            {% if fields.button.url %}
+                <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta {{fields.button_class}}">
+                    {{ fields.button.title }}
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+</section>

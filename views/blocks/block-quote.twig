@@ -1,0 +1,30 @@
+{#
+/**
+ * Block Name: Quote
+ */
+ 
+#}
+<section class="block-quote {{ block.className }} {% if fields.dark %}{% else %}black{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+        <h3 class="quote">{{fields.quote}}</h3>
+        <div class="author-infos">
+            {% if fields.author_avatar %}
+            <picture class="avatar">
+                <source
+                type="image/webp"
+                srcset="{{ Image(fields.author_avatar).src|towebp }}, {{ Image(fields.author_avatar).src|retina(2)|towebp }} 2x"
+                >
+                <source
+                type="image/jpeg"
+                srcset="{{ Image(fields.author_avatar).src|tojpg }}, {{ Image(fields.author_avatar).src|retina(2)|tojpg }} 2x"
+                >
+                <img class="fit-cover" src="{{ Image(fields.author_avatar).src }}" width="{{ Image(fields.author_avatar).width }}" height="{{ Image(fields.author_avatar).height }}" loading="lazy" alt="{{ Image(fields.author_avatar).alt }}" />
+            </picture>
+            {% endif %}
+                <h4 class="name">{{fields.author_name}}</h4>
+            {% if fields.author_role %}
+            <p class="role">{{fields.author_role}}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>

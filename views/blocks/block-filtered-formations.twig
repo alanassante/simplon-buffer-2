@@ -1,0 +1,69 @@
+{#
+/**
+ * Block Name: formations filtrés
+ *
+ */
+#}
+
+{% for item in curated_formations %}
+    {% set color ='--color: ' %}
+    {% for tag in item.terms('domains') %}
+        {% for value in tag.domain_color %}
+            {% if loop.index < 4 %}
+                {% set color = color ~ value %}
+            {% endif %}
+            {% if loop.index < 3 %}
+                {% set color = color ~ ',' %}   
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <a href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="card" style="{{color}};">
+        {% if item.thumbnail %}
+            {%  set card_picture = item.thumbnail %}
+        {% else %}
+            {%  set card_picture = formations_default_picture %}
+        {% endif %}
+            <picture class="picture">
+                <source
+                type="image/webp"
+                srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                >
+                <source
+                type="image/jpeg"
+                srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                >
+                <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+            </picture>
+        
+        {% for tag in item.terms('domains') %}
+            <p class="tag">{{tag}}</p>
+        {% endfor %}
+        <h5 class="title">{{item.title}}</h5>
+        <p class="description">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</p>
+        
+        
+        {% for custom_char in item.meta('custom_chars') %}
+            <p class="characteristic">
+                {% if custom_char.picto %}
+                <picture class="picto">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(custom_char.picto).src|towebp }}, {{ Image(custom_char.picto).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(custom_char.picto).src|tojpg }}, {{ Image(custom_char.picto).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img class="fit-cover" src="{{ Image(custom_char.picto).src }}" width="{{ Image(custom_char.picto).width }}" height="{{ Image(custom_char.picto).height }}" loading="lazy" alt="{{ Image(custom_char.picto).alt }}" />
+                </picture>
+                {% endif %}
+                <span>{{custom_char.characteristic}}</span>
+            </p>
+        {% endfor %}
+        {% if item.link %}
+            <p {% if item.target %}target="{{ item.target }}"{% endif %} {% if item.target %}rel="noopener"{% endif %} class="cta secondary">
+                <span>{{ item.discover_training_label }}</span>
+            </p>
+        {% endif %}
+    </div>
+{% endfor %}

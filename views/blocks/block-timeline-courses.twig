@@ -1,0 +1,74 @@
+{#
+/**
+ * Block Name: Timeline Courses
+ */
+#}
+<section class="block-timeline-courses{{ block.className }} {% if fields.dark %}{% else %}black{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container {% if fields.reversed %}reversed{% endif %}">
+        <div class="wrapper-top">
+            {% if fields.title %}<h2 class="title" >{{fields.title}}</h2>{% endif %}
+        </div>
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper"></div>   
+        {% if fields.bloc_cards|length > 0 %}
+        <div class="wrapper-timeline">
+            {% for card in fields.bloc_cards %}
+            <div class="wrapper-step">
+                <div class="step">
+                    <div class="wrapper-content">
+                        <div class="wrapper-title">
+                            {% if card.title %}<h3 class="title" >{{card.title}}</h3>{% endif %}
+                            {% if card.equivalence %}<span class="equivalence" >{{card.equivalence}}</span>{% endif %}
+                        </div>
+                            {% if card.text %}<p class="content" >{{card.text}}</p>{% endif %}
+                    </div>
+
+                    {% if card.panels|length > 0 %}
+                        <div class="wrapper-panels">
+                            {% for panel in card.panels %}
+                                <a class="panel">
+                                    <div class="wrapper-img">
+                                        {% if panel.picture %}
+                                            <picture class="picture">
+                                                <source type="image/webp" srcset="{{ Image(panel.picture).src|towebp }}, {{ Image(panel.picture).src|retina(2)|towebp }} 2x">
+                                                <source type="image/jpeg" srcset="{{ Image(panel.picture).src|tojpg }}, {{ Image(panel.picture).src|retina(2)|tojpg }} 2x">
+                                                <img src="{{ Image(panel.picture).src }}" width="{{ Image(panel.picture).width }}" height="{{ Image(panel.picture).height }}" loading="lazy" alt="{{ Image(panel.picture).alt }}" />
+                                            </picture>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="wrapper-content">
+                                        {% if panel.title %}<h5 class="title" >{{panel.title}}</h5>{% endif %}
+
+                                        <div class="wrapper-text">
+                                        {% if panel.icon %}
+                                            <picture class="picture">
+                                                <source type="image/webp" srcset="{{ Image(panel.icon).src|towebp }}, {{ Image(panel.icon).src|retina(2)|towebp }} 2x">
+                                                <source type="image/jpeg" srcset="{{ Image(panel.icon).src|tojpg }}, {{ Image(panel.icon).src|retina(2)|tojpg }} 2x">
+                                                <img src="{{ Image(panel.icon).src }}" width="{{ Image(panel.icon).width }}" height="{{ Image(panel.icon).height }}" loading="lazy" alt="{{ Image(panel.icon).alt }}" />
+                                            </picture>
+                                        {% endif %}
+                                        {% if panel.text %}<p class="content" >{{panel.text}}</p>{% endif %}
+                                        </div>
+
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                
+                </div>
+            
+            </div>
+                
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="wrapper-bottom">
+            {% if fields.text %}<h3 class="text" >{{fields.text}}</h3>{% endif %}
+            {% if fields.button.url %}
+            <a href="{{fields.button.url}}" class="cta primary {% if fields.dark %}white{% endif %}">{{fields.button.title}}</a>
+            {% endif %}
+        </div>
+    </div>  
+</section>

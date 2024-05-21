@@ -1,0 +1,71 @@
+{#
+/**
+ * Block Name: Hero section
+ */
+#}
+<section class="block-hero-lp black">
+    <div class="container">
+        <div class="left-bloc side">
+            <div class="hero-lp-swiper {% if fields.pictures|length > 3 %}swiper{% endif %}">
+                <div class="swiper-wrapper">
+                {% for item in fields.pictures %}
+                    <picture class="picture swiper-slide">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(item.picture).src|towebp }}, {{ Image(item.picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(item.picture).src|tojpg }}, {{ Image(item.picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
+                    </picture>
+                {% endfor %}
+                </div>
+            </div>
+            {% if fields.logo %}
+                <picture class="logo picture">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(fields.logo).src|towebp }}, {{ Image(fields.logo).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(fields.logo).src|tojpg }}, {{ Image(fields.logo).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img src="{{ Image(fields.logo).src }}" width="{{ Image(fields.logo).width }}" height="{{ Image(fields.logo).height }}" loading="lazy" alt="{{ Image(fields.logo).alt }}" />
+                </picture>
+            {% endif %}
+            {% if fields.text_content %}
+                <div class="txt">
+                    <p class="label">{{ fields.label }}</p>
+                    {{ fields.text_content }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="right-bloc side">
+        
+            <div class="tabs">
+                {% for item in fields.forms %}
+                <div class="tab {% if loop.index == "1" %}active{% endif %}">{{item.form_title}}</div>
+                {% endfor %}
+            </div>
+            <div class="forms">
+                {% for item in fields.forms %}
+                <div class="form-{{loop.index}} form {% if loop.index == "1" %}active{% endif %}">{{item.form}}</div>
+                {% endfor %}
+            </div>
+            
+        
+        </div>
+    
+                {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div>  
+                
+        
+        
+        
+    </div>
+
+
+</section>

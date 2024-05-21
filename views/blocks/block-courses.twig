@@ -1,0 +1,137 @@
+{#
+/**
+ * Block Name: Parcours de formation
+ *
+ */
+#}
+{% set formations_levels = [] %}
+
+{% for item in fields.lines %}
+    {% for post in Post(item.posts_to_display) %}
+                        
+        {% if post.terms('levels')|first|e not in formations_levels  and post.terms('levels')|first|e != "" %}
+            {% set formations_levels = formations_levels|merge([post.terms('levels')|first]) %}
+        {% endif %}
+
+    {% endfor %}
+{% endfor %}
+
+<section class="block-courses {{ block.className }} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
+    <div class="container">
+        <h2 class="title">{{fields.title}}</h2>
+        <div class="table" style="--total:{{formations_levels|length}};">
+            <div class="top">
+                <div class="empty"></div>
+                <div class="values">
+                {% for level in formations_levels %}
+                    <div class="col" style="order:{{level.ranking}}">
+                        <h4 class="col-label">{{level}}</h4>
+                        <p class="col-sub-label">{{level.help_text}}</p>
+                    </div>
+                {% endfor %}
+                </div>
+
+            </div>
+                    
+                    
+
+            <div class="body">
+                {% for item in fields.lines %}
+                    {% set term = TimberTerm(item.target_category) %}
+                   
+                    {% set course_color ='--course-color: ' %}
+                    {% for value in term.meta('domain_color',item.target_category) %}
+                        {% if loop.index < 4 %}
+                            {% set course_color = course_color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set course_color = course_color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <div class="line" style="{{course_color}};">
+    
+                        <div class="main-category" style="--picto:url({{term.meta('picto',item.target_category)}});">
+                            <h4 class="cat-title">
+                                {{term.meta('name',item.target_category)}}
+                            </h4>
+                            {% if item.button.url %}
+                                <a href="{{ item.button.url }}" {% if item.button.target %}target="{{ item.button.target }}"{% endif %} {% if item.button.target %}rel="noopener"{% endif %} class="cta secondary white">
+                                    <span>{{ item.button.title }}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="values">
+                        {% for level in formations_levels %}
+                            <div class="cell">
+                                <h4 class="col-label">{{level}}</h4>
+                                <p class="col-sub-label">{{level.help_text}}</p>
+                                {% for post in Post(item.posts_to_display) %}
+
+                                    {% set post_terms  = post.terms('levels') %}
+                                    {% set post_level = post_terms|first %}
+                                    
+                                    {% if post_level|e == level %}
+                                        
+                                        <p class="post-title">
+                                            <span>{% if post.short_title %}{{post.short_title}}{% else %}{{post.title}}{% endif %}</span>
+                                        
+                                            {% if post.thumbnail %}
+                                                {%  set card_picture = post.thumbnail %}
+                                            {% else %}
+                                                {% if fields.listing_type == "events" %}
+                                                    {%  set card_picture = events_default_picture %}
+                                                {% else %}
+                                                    {%  set card_picture = formations_default_picture %}
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            <picture class="thumbnail">
+                                                <source
+                                                type="image/webp"
+                                                srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                                                >
+                                                <source
+                                                type="image/jpeg"
+                                                srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                                                >
+                                                <img class="fit-cover" src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                                            </picture>
+                                            
+                                        </p>
+                                            
+                                        
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+        {% if fields.additional_line.title %}
+        {% set add_color = '--additional-color:' %}
+        {% for value in fields.additional_line.bg_color %}
+        
+            {% if loop.index < 4 %}
+                {% set add_color = add_color ~ value %}
+            {% endif %}
+            {% if loop.index < 3 %}
+                {% set add_color = add_color ~ ',' %}   
+            {% endif %}
+        {% endfor %}
+        <div class="additional-line line" style="{{add_color}};">
+            
+            <p class="big">{{ fields.additional_line.title }}</p>
+            {% if fields.additional_line.button.url %}
+                <a href="{{ fields.additional_line.button.url }}" {% if fields.additional_line.button.target %}target="{{ fields.additional_line.button.target }}"{% endif %} {% if fields.additional_line.button.target %}rel="noopener"{% endif %} class="cta secondary black">
+                    <span>{{ fields.additional_line.button.title }}</span>
+                </a>
+            {% endif %}
+            
+        </div>
+        {% endif %}
+    </div>
+</section>

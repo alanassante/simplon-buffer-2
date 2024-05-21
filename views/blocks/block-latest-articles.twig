@@ -1,0 +1,83 @@
+{#
+/**
+ * Block Name: Latest article
+ */
+#}
+
+
+<section class="block-latest-article {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+
+    <div class="container regular">
+    
+        {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+
+        <div class="top-bar">
+            {% if fields.title %}
+                <h2 class="title">{{fields.title}}</h2>
+            {% endif %}
+            {% if fields.button.url %}
+                <a href="{{fields.button.url}}" class="cta primary">{{fields.button.title}}</a>
+            {% endif %}
+        </div>
+        
+        
+        <div class="content {% if fields.style == "duo" %} duo{% elseif fields.style == "trio" %} trio{% endif %}">
+            {% for post in articles %}
+                <a href="{{post.link}}" class="post">
+                    {% if post.thumbnail %}
+                        {%  set card_picture = post.thumbnail %}
+                    {% else %}
+                        {%  set card_picture = posts_default_picture %}
+                    {% endif %}
+                    <picture class="post-picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                    </picture>
+                    <div class="wrapper">
+                        <div class="top">
+                            {% set color = '--color :' %}
+                            {% for tag in post.terms('categories') %}
+                                {% for value in tag.category_color %}
+                                
+                                    {% if loop.index < 4 %}
+                                        {% set color = color ~ value %}
+                                    {% endif %}
+                                    {% if loop.index < 3 %}
+                                        {% set color = color ~ ',' %}   
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            {% for tag in post.terms('categories') %}
+                                <p class="tag" style="{{color}}">{{tag}}</p>
+                            {% endfor %}
+                            <p class="date">{{post.date}}</p>
+                        </div>
+                        <div class="post-infos">
+                            <h3 class="post-title">{{post.title}}</h3>
+                            {% if fields.style == "trio" %}
+                                <div class="description">{% if post.excerpt %}{{post.excerpt}}{% else %}{{post.description}}{% endif %}</div>
+                                <p class="cta secondary">{{fields.button_label}}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                   
+                </a>
+            {% endfor %}
+        </div>
+        {% if fields.display_tag_bar %}
+            <div class="tags">
+                {% for item in tags %}
+                    <a href="{{item.link}}" class="tag" data-category="{{ item.slug }}">{{ item.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

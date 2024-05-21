@@ -1,0 +1,85 @@
+//COLORS
+$blue-corp: 13, 39, 245; // Code HEXA: #0d27f5;
+$red-regular: 206, 0, 51; // Code HEXA: #ce0033;
+$white: 255, 255, 255; //Code HEXA: #ffffff;
+$black: 0, 0, 0; // Code HEXA: #000000;
+$black-85: 38, 38, 45; // Code HEXA: #26262d;
+$black-60: 93, 93, 105; // Code HEXA: #5d5d69;
+$black-40: 153, 153, 160; // Code HEXA: #9999a0;
+$black-20: 204, 204, 215; // Code HEXA: #ccccd7;
+$black-10: 229, 229, 239; // Code HEXA: #e5e5ef;
+$grey: 250, 250, 251; // Code HEXA: #fafafb;
+
+// COLOR LIGHT
+$blue-light: 246, 246, 255; // Code HEXA: #f6f6ff;
+$red-light: 252, 227, 241; // Code HEXA: #FCEDF1;
+$purple-light: 220, 201, 243; // Code HEXA: #dcc9f3;
+$green-light: 214, 222, 213; // Code HEXA: #d6ded5;
+
+// COLOR HEXA
+$blue-corp-hx: #0d27f5;
+$red-regular-hx: #ce0033;
+$white-hx: #ffffff;
+$black-hx: #000000;
+$black-85-hx: #26262d;
+$black-60-hx: #5d5d69;
+$black-40-hx: #9999a0;
+$black-20-hx: #ccccd7;
+$black-10-hx: #e5e5ef;
+$grey-hx: #fafafb;
+
+body {
+  // 50 shades of grey
+  --black-85: #{$black-85};
+  --black-60: #{$black-60};
+  --black-40: #{$black-40};
+  --black-20: #{$black-20};
+  --black-10: #{$black-10};
+
+  --main-color: #{$red-regular};
+  --white-color: #{$white};
+  --black-color: #{$black};
+  --blue-corp: 13, 39, 245; // Code HEXA: #0d27f5;
+  --blue-light: #{$blue-light};
+  --red-light: #{$red-light};
+
+  // BACKGROUND
+  --bg-color: #{$red-regular};
+  --bg-variant-light: #{$red-light};
+  --bg-dark: #{$black};
+
+  // INVERSE COLOR
+  --bg-variant-light-inverse: #{$blue-light};
+
+  // SVG
+  --main-color-hx: #{$red-regular-hx};
+  --black-hx: #{$black-hx};
+  --white-hx: #{$white-hx};
+
+  // SVG INVERSE
+  --black-hx-inverse: #{$black-hx};
+  --white-hx-inverse: #{$white-hx};
+
+  // --------  CORP THEME  --------
+  &.corp {
+    --main-color: #{$blue-corp};
+    --white-color: #{$white};
+    --black-color: #{$black};
+
+    // BACKGROUND
+    --bg-color: #{$blue-corp};
+    --bg-variant-light: #{$blue-light};
+
+    // INVERSE COLOR
+    --bg-variant-light-inverse: #{$red-light};
+
+    // SVG
+    --main-color-hx: #{$blue-corp-hx};
+    --black-hx: #{$black-hx};
+    --white-hx: #{$white-hx};
+
+    // SVG INVERSE
+    --black-hx-inverse: #{$white-hx};
+    --white-hx-inverse: #{$black-hx};
+  }
+}

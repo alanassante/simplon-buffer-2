@@ -1,0 +1,198 @@
+section.block-banner-carousel {
+  position: relative;
+  padding: 130px 0px;
+  .top-mask,
+  .bottom-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 0;
+  }
+  .top-mask {
+    top: 0;
+    bottom: 50%;
+  }
+  .bottom-mask {
+    bottom: 0;
+    top: 50%;
+  }
+
+  &.black {
+    background-color: transparent !important;
+    .container {
+      background-color: rgba(var(--black-color), 1);
+      .tiles-pattern {
+        defs {
+          linearGradient {
+            stop {
+              stop-color: rgba(var(--main-color), 1) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .container {
+    background-color: rgba(var(--main-color), 1);
+    border-radius: 5px;
+    padding: 60px;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+    border-radius: 5px;
+    align-items: center;
+
+    &.reversed {
+      flex-direction: row-reverse;
+    }
+    .tiles-pattern-wrapper {
+      top: 0px;
+      right: 0px;
+      overflow: hidden;
+      .tiles-pattern {
+        defs {
+          linearGradient {
+            stop {
+              stop-color: rgba(var(--white-color), 1);
+            }
+          }
+        }
+      }
+    }
+    .banner-swiper {
+      width: 100%;
+      max-width: 1125px;
+      overflow: hidden;
+      height: fit-content;
+      .swiper-wrapper {
+        .swiper-slide {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 30px;
+          transition: opacity 0.3s ease-in-out;
+          opacity: 0;
+          height: fit-content !important;
+          &-active {
+            opacity: 1;
+          }
+          .text-content {
+            width: 100%;
+            height: fit-content;
+
+            h2 {
+              margin-bottom: 30px;
+            }
+            *:not(.cta) {
+              color: rgba(var(--white-color), 1);
+            }
+
+            ul {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 10px 45px;
+              margin: 30px 0px 0px 0px;
+              li {
+                width: 45%;
+                margin: 0;
+              }
+            }
+            .cta {
+              margin-top: 60px;
+            }
+          }
+          .picture {
+            max-width: 350px;
+            max-height: 430px;
+          }
+        }
+      }
+    }
+    .banner-swiper-pages {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      flex-direction: column;
+    }
+    .banner-swiper-nav {
+      gap: 10px;
+      position: absolute;
+      top: 50%;
+      right: -17px;
+      transform: translateY(-50%);
+      flex-direction: column;
+
+      .prev {
+        transform: rotate(90deg);
+      }
+      .next {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+@media screen and (max-width: $size1) {
+  section.block-banner-carousel {
+    padding-right: 20px;
+    padding-left: 20px;
+
+    .container {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
+      &.reversed {
+        flex-direction: column-reverse;
+      }
+
+      .banner-swiper {
+        max-width: 100%;
+        height: auto !important;
+
+        .swiper-wrapper {
+          .swiper-slide {
+            flex-direction: column;
+            height: fit-content;
+            align-items: center;
+            max-width: 100%;
+            .text-content {
+              ul {
+                li {
+                  width: 100%;
+                }
+              }
+              .cta {
+                margin-top: 30px;
+              }
+            }
+          }
+        }
+      }
+
+      .banner-swiper-pages {
+        position: static;
+      }
+      .banner-swiper-nav {
+        position: static;
+        flex-direction: row;
+        .prev {
+          transform: rotate(0deg) !important;
+        }
+        .next {
+          transform: rotate(0deg) !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 740px) {
+  section.block-banner-carousel {
+    padding-right: 10px;
+    padding-left: 10px;
+    .container {
+      .banner-swiper {
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{#
+/**
+ * Block Name: Banner-carousel
+ */
+#}
+{% set randomId = random() %}
+
+<section class="block-banner-carousel {{ block.className }} {% if fields.dark %}black{% else %}{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" >
+    <div class="bottom-mask" style="background-color:rgba({% for item in fields.top_mask_color %}{{item}}{% if loop.index != fields.top_mask_color|length %},{% endif %}{% endfor %})"></div>
+    <div class="top-mask" style="background-color:rgba({% for item in fields.bottom_mask_color %}{{item}}{% if loop.index != fields.bottom_mask_color|length %},{% endif %}{% endfor %})"></div>
+    <div class="container regular {% if fields.reversed %}reversed{% endif %}">         
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper"></div>      
+        <div id="swiper-{{ randomId }}" class="banner-swiper">
+            <div class="swiper-wrapper">
+                {% for item in fields.swiper_content %}
+                    <div class="swiper-slide">
+                        <div class="text-content">
+                            {{item.text_content}}
+                            
+                            {% if item.button.url %}
+                                <a href="{{item.button.url}}" class="cta primary {% if fields.dark %}{% else %}white{% endif %}">{{item.button.title}}</a>
+                            {% endif %}
+                        </div>
+                        {% if item.picture %}
+                        <picture class="picture">
+                            <source
+                            type="image/webp"
+                            srcset="{{ Image(item.picture).src|towebp }}, {{ Image(item.picture).src|retina(2)|towebp }} 2x"
+                            >
+                            <source
+                            type="image/jpeg"
+                            srcset="{{ Image(item.picture).src|tojpg }}, {{ Image(item.picture).src|retina(2)|tojpg }} 2x"
+                            >
+                            <img src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
+                        </picture>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if fields.swiper_content|length > 1 %}
+        <div class="banner-swiper-nav swiper-nav">
+            <div class="banner-swiper-nav-prev prev"></div>
+            <div class="banner-swiper-nav-next next"></div>
+        </div>
+        <div class="banner-swiper-pages swiper-pages"></div>
+        {% endif %}
+    </div>
+</section>

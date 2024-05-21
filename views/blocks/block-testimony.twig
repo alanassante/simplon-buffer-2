@@ -1,0 +1,86 @@
+{#
+/**
+ * Block Name: Testimony
+ */
+#}                   
+<section class="block-testimony {% if fields.style == "multi" %}multi{% else %}single{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+
+        {% if fields.style == "multi" %}
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+            {% if fields.title %}
+            <h2 class="title">{{fields.title}}</h2>
+            {% endif %}
+        {% endif %}
+        <div class="testimony-swiper">
+            <div class="swiper-nav">
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div>
+            <div class="swiper-wrapper">
+                {% for person in fields.testimonies %}
+                <div class="swiper-slide">
+                    
+                    <div class="author">
+                        {% if person.picture %}
+                            <picture class="picture">
+                                <source
+                                type="image/webp"
+                                srcset="{{ Image(person.picture).src|towebp }}, {{ Image(person.picture).src|retina(2)|towebp }} 2x"
+                                >
+                                <source
+                                type="image/jpeg"
+                                srcset="{{ Image(person.picture).src|tojpg }}, {{ Image(person.picture).src|retina(2)|tojpg }} 2x"
+                                >
+                                <img src="{{ Image(person.picture).src }}" width="{{ Image(person.picture).width }}" height="{{ Image(person.picture).height }}" loading="lazy" alt="{{ Image(person.picture).alt }}" />
+                            </picture>
+                        {% endif %}
+                        {% if fields.style == "multi" %}
+                            <div class="id">
+                                {% if person.name %}
+                                    <p class="name">{{person.name}}</p>
+                                {% endif %}
+                                {% if person.role %}
+                                    <p class="tag" style="--color:{% if person.color %}{{person.color}}{% else %}#FFFFFF{% endif %};">{{person.role}}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="quote">
+
+                        <div>{{person.quote}}</div>
+
+                        {% if fields.style == "single" %}
+                            
+                            <div class="id">
+                                {% if person.picture %}
+                                    <picture class="picture">
+                                        <source
+                                        type="image/webp"
+                                        srcset="{{ Image(person.picture).src|towebp }}, {{ Image(person.picture).src|retina(2)|towebp }} 2x"
+                                        >
+                                        <source
+                                        type="image/jpeg"
+                                        srcset="{{ Image(person.picture).src|tojpg }}, {{ Image(person.picture).src|retina(2)|tojpg }} 2x"
+                                        >
+                                        <img src="{{ Image(person.picture).src }}" width="{{ Image(person.picture).width }}" height="{{ Image(person.picture).height }}" loading="lazy" alt="{{ Image(person.picture).alt }}" />
+                                    </picture>
+                                {% endif %}
+                                {% if person.name %}
+                                    <p class="name">{{person.name}}</p>
+                                {% endif %}
+                                {% if person.role %}
+                                    <p class="tag" style="--color:{% if person.color %}{{person.color}}{% else %}#FFFFFF{% endif %};">{{person.role}}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</section>

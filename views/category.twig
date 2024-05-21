@@ -1,0 +1,154 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set post = listposts|first %}
+<section class="block-hero-blog black" >
+    <div  class="container v2">
+        <div class="left-bloc">
+            {% if post.thumbnail %}
+                <picture class="picture">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(post.thumbnail).src|towebp }}, {{ Image(post.thumbnail).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(post.thumbnail).src|tojpg }}, {{ Image(post.thumbnail).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img src="{{ Image(post.thumbnail).src }}" width="{{ Image(post.thumbnail).width }}" height="{{ Image(post.thumbnail).height }}" loading="lazy" alt="{{ Image(post.thumbnail).alt }}" />
+                </picture>
+            {% endif %}
+        </div>
+        <div class="right-bloc">
+            <div class="post-infos">
+                {% for tag in post.terms('category') %}
+                    {% set color ='--color: ' %}
+                    {% for value in tag.meta('category_color') %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <p class="tag" style="{{color}}">{{tag}}</p>
+                {% endfor %}
+                <p class="date small">{{post.date}}</p>
+            </div>
+            
+            <h1>{{post.title}}</h1>
+            
+        </div>
+        <div class="mask mask-1"></div>
+        
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper"></div>  
+    </div>
+    <div class="container"></div>
+</section>
+
+
+<section class="breadcrumb">
+    <div class="container">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="{{ site.url }}"><span class="small" itemprop="name">{{home_page_label}}</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="{{ blogUrl }}"><span class="small" itemprop="name">{{blog_page_label}}</span></a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span class="small" itemprop="name">{{page_category_name}}</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </div>
+    
+</section>
+
+<section class="block-listing-cards post" id="scroll-target">
+    <div class="container">
+        
+        <div class="blog-nav">
+            
+            <div class="tags">
+                {% for item in categories %}
+                    {% set color ='--color: ' %}
+                    {% for value in item.category_color %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{item.link}}#scroll-target">
+                        <p class="tag" data-domain="{{item.slug}}" style="{{color}}">{{item}}</p>
+                    </a>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="listing">
+            
+            {% for item in listposts %}
+                {% set color ='--color: ' %}
+                
+                
+                {% for tag in item.terms('category') %}
+                    {% for value in tag.category_color %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            
+
+                <div data-type="{{item.type}}" class="card" style="{{color}};">
+                    
+                    {% if item.thumbnail %}
+                        {%  set card_picture = item.thumbnail %}
+                    {% else %}
+                        {%  set card_picture = posts_default_picture %}
+                    {% endif %}
+                    <picture class="picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                    </picture>
+                   
+                        {% for tag in item.terms('category') %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
+
+                    <h4 class="title">{{item.title}}</h4>
+                    
+                    <p class="description">{% if item.description %}{{item.description}}{% else %}{{ item.excerpt({ words: 20 })}}{% endif %}</p>
+
+                    {% if item.link %}
+                        <a href="{{ item.link }}" {% if item.target %}target="{{ item.target }}"{% endif %} {% if item.target %}rel="noopener"{% endif %} class="cta secondary">
+                            <span>{{ item.discover_post_label }}</span>
+                        </a>
+                    {% endif %}
+                    
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{pagination}}
+        </div>
+    </div>
+</section>
+{% endblock %}

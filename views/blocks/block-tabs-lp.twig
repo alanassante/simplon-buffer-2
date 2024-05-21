@@ -1,0 +1,35 @@
+{#
+/**
+ * Block Name: Block onglets lp
+ */
+#}
+<section class="block-tabs-lp">
+    <div class="container">
+        {{ fields.text_content }}
+    </div>
+    <div class="container">
+        <div class="tabs">
+            {% for item in fields.tabs %}
+                <div class="tab {% if loop.index == '1' %}active{% endif %}">
+                    <p class="label">{{item.tab_label}}</p>
+                    <div data-max-height="" style="max-height:" class="content-responsive {% if loop.index == '1' %}active{% endif %}">
+                        <div class="left side">{{item.left_content}}</div>
+                        <div class="right side">{{item.right_content}}</div>
+                    </div> 
+                </div>
+            {% endfor %}
+        </div>
+        <div class="content-wrapper">
+            {% for item in fields.tabs %}
+            <div class="content {% if loop.index == '1' %}active{% endif %}">
+                <div class="left side">{{item.left_content}}</div>
+                <div class="right side">{{item.right_content}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+           <p class="label">{{fields.bottom_label}}</p> 
+           {{fields.bottom_text}}
+    </div>
+</section>

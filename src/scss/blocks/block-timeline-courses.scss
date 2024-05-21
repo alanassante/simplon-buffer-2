@@ -1,0 +1,313 @@
+section.block-timeline-courses {
+  background-color: $black-hx;
+
+  .container {
+    position: relative;
+    flex-direction: column;
+  }
+  .tiles-pattern-wrapper {
+    right: -85px;
+  }
+  .wrapper-top {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 105px;
+    .title {
+      color: $white-hx;
+      margin-bottom: 0px;
+    }
+  }
+
+  .wrapper-timeline {
+    max-width: 1030px;
+    width: 100%;
+    margin: auto;
+    z-index: 2;
+    position: relative;
+    .wrapper-step {
+      width: 100%;
+      display: flex;
+
+      &:first-child {
+        .step {
+          &::before {
+            height: calc(100% - 20px);
+          }
+        }
+      }
+
+      &:nth-child(even) {
+        justify-content: flex-start;
+
+        .step {
+          padding-right: 50px;
+
+          &::before {
+            right: -0.5px;
+          }
+
+          &::after {
+            right: -5px;
+          }
+        }
+      }
+      &:nth-child(odd) {
+        justify-content: flex-end;
+
+        .step {
+          padding-left: 50px;
+
+          &::before {
+            left: -0.5px;
+          }
+
+          &::after {
+            left: -5px;
+          }
+        }
+      }
+    }
+  }
+
+  .step {
+    position: relative;
+    max-width: calc(465px + 50px);
+    min-width: 50%;
+    padding-bottom: 35px;
+
+    // Line timeline
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 1px;
+      height: 100%;
+      background: $white-hx;
+      transform: translateX(-50%);
+      overflow: hidden;
+    }
+
+    // Circle Timeline
+    &::after {
+      content: "";
+      position: absolute;
+      top: 13.5px;
+      width: 10px;
+      height: 10px;
+      background: $white-hx;
+      border-radius: 100%;
+      overflow: hidden;
+    }
+
+    .wrapper-content {
+      .wrapper-title {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        column-gap: 15px;
+        row-gap: 5px;
+        margin-bottom: 10px;
+
+        .title {
+          color: $white-hx;
+          padding: 0;
+          margin-bottom: 0;
+        }
+
+        .equivalence {
+          font-size: 16px;
+          color: rgba($white-hx, 0.8);
+        }
+      }
+
+      .content {
+        font-size: 18px;
+        color: $white-hx;
+        margin: 0;
+      }
+    }
+  }
+
+  .wrapper-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .panel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $white-hx;
+    overflow: hidden;
+    cursor: pointer;
+
+    .wrapper-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .picture {
+        width: 100%;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+
+    .wrapper-content {
+      width: calc(100% - 95px);
+      .title {
+        padding: 0;
+      }
+
+      .wrapper-text {
+        display: flex;
+        gap: 15px;
+
+        .picture {
+          width: 20px;
+          height: 20px;
+          min-width: 20px;
+          img {
+            width: 100%;
+            object-fit: contain;
+            object-position: center;
+          }
+        }
+
+        .content {
+          font-size: 16px;
+          line-height: 100%;
+          color: $black-hx;
+        }
+      }
+    }
+  }
+
+  .wrapper-bottom {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-top: 45px;
+    margin-top: 120px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 1px;
+      background: $white-hx;
+    }
+
+    .text {
+      max-width: 745px;
+      color: $white-hx;
+      margin-bottom: 0;
+    }
+
+    a.cta {
+      height: fit-content;
+    }
+  }
+}
+@media screen and (max-width: 1300px) {
+  section.block-timeline-courses {
+    .wrapper-top {
+      text-align: left;
+      margin-bottom: 50px;
+      width: fit-content;
+      margin: 0 auto 105px auto;
+      h2 {
+        width: fit-content;
+      }
+    }
+
+    .wrapper-timeline {
+      max-width: 1030px;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .wrapper-step {
+        width: fit-content;
+        &:nth-child(odd) {
+          justify-content: flex-start;
+        }
+
+        &:nth-child(even) {
+          .step {
+            padding-right: 0;
+          }
+        }
+
+        .step {
+          padding-left: 50px;
+          padding-bottom: 80px;
+
+          &::before {
+            left: -0.5px;
+          }
+
+          &::after {
+            left: -5px;
+          }
+        }
+      }
+    }
+
+    .step {
+      width: 100%;
+      min-width: 0;
+      padding-bottom: 60px;
+    }
+  }
+}
+
+@media screen and (max-width: $size3) {
+  section.block-timeline-courses {
+    .wrapper-bottom {
+      padding-top: 35px;
+      margin-top: 60px;
+    }
+  }
+}
+
+@media screen and (max-width: $size5) {
+  section.block-timeline-courses {
+    .step {
+      padding-left: 30px !important;
+    }
+  }
+}
+
+@media screen and (max-width: $size7) {
+  section.block-timeline-courses {
+    .panel {
+      .wrapper-img {
+        display: none;
+      }
+
+      .wrapper-content {
+        width: 100%;
+      }
+    }
+  }
+}

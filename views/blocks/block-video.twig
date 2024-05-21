@@ -1,0 +1,110 @@
+{#
+/**
+ * Block Name: Video
+ */
+#}
+{% if fields.choice_video_type == "video_youtube" %}
+	{% set random_id = 'iframe-wrapper-' ~ random() %}
+{% endif %}
+<section class="block-video{{ fields.className }}{% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
+	<div class="container">
+		{% if fields.title %}
+			<h2 class="wrapper-title">{{fields.title}}</h2>
+		{% endif %}
+		{% if fields.choice_video_type == "video_youtube" %}
+			{% set videoId = fields.video_youtube|replace({"https://www.youtube.com/watch?v=" : ""}) %}
+		{% endif %}
+		<div class="video-wrapper">
+			{% if fields.cover %}
+				<picture class="cover">
+					<source type="image/webp" srcset="{{ Image(fields.cover).src|towebp }}, {{ Image(fields.cover).src|retina(2)|towebp }} 2x">
+					<source type="image/jpeg" srcset="{{ Image(fields.cover).src|tojpg }}, {{ Image(fields.cover).src|retina(2)|tojpg }} 2x">
+					<img class="fit-cover" src="{{ Image(fields.cover).src }}" loading="lazy" alt="{{ Image(fields.cover).alt }}"/>
+					{% if Image(fields.cover).caption %}
+						<legend>{{ Image(fields.cover).caption }}</legend>
+					{% endif %}
+				</picture>
+			{% endif %}
+			
+			{% if fields.choice_video_type == "video" %}
+				<video class="video" controls="false">
+					<source src="{{fields.video.url}}" type="video/mp4">
+				</video>
+			{% else %}
+				<div class="video iframe" id="{{random_id}}" data-videoid="{{videoId}}"></div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% if fields.choice_video_type == "video_youtube" %}
+<script src="https://www.youtube.com/iframe_api"></script>
+{% endif %}
+<script>
+	
+	const section = document.querySelector(".block-video");
+	const videoWrapper = section.querySelector(".video-wrapper");
+	const cover = videoWrapper.querySelector(".cover");
+	let video = videoWrapper.querySelector(".video");
+
+	{% if fields.choice_video_type == "video_youtube" %}
+		if (video.classList.contains('iframe')) {
+			var player;
+			function onYouTubeIframeAPIReady() {
+				player = new YT.Player("{{random_id}}", {
+					videoId: "{{videoId}}",
+					events: {
+						'onReady': onPlayerReady,
+					}
+				});
+
+			}
+			
+		}
+	{% else %}
+		cover.addEventListener('click', function(e){
+			e.preventDefault()
+			playVideo(video,cover)
+		})
+	{% endif %}
+
+	// Functions
+
+	function onPlayerReady(){
+		let iframe = videoWrapper.querySelector("iframe");
+		cover.addEventListener('click', function(e){
+			e.preventDefault()
+			playVideo(iframe,cover)
+		})
+	}
+	function playVideo(video, cover) {
+
+		// Video
+		if (video.tagName === "VIDEO") {
+			if (video.paused) {
+			video.play();
+			cover.classList.add("hidden");
+			} else {
+			video.pause();
+			cover.classList.remove("hidden");
+			}
+		}
+		// Iframe
+		else if (video.tagName === "IFRAME") {
+			if (
+			player.getPlayerState() == -1 ||
+			player.getPlayerState() == 0 ||
+			player.getPlayerState() == 2 ||
+			player.getPlayerState() == 5
+			) {
+				player.playVideo();
+				cover.classList.add("hidden");
+			} else {
+				player.stopVideo();
+				cover.classList.remove("hidden");
+			}
+		}
+		
+	}
+
+</script>
+

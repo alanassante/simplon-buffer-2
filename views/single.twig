@@ -1,0 +1,177 @@
+{% extends "base.twig" %}
+{% block content %}
+
+<section class="block-hero-blog black" >
+    <div  class="container v2">
+        <div class="left-bloc">
+            {% if post.thumbnail %}
+                <picture class="picture">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(post.thumbnail).src|towebp }}, {{ Image(post.thumbnail).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(post.thumbnail).src|tojpg }}, {{ Image(post.thumbnail).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img src="{{ Image(post.thumbnail).src }}" width="{{ Image(post.thumbnail).width }}" height="{{ Image(post.thumbnail).height }}" loading="lazy" alt="{{ Image(post.thumbnail).alt }}" />
+                </picture>
+            {% endif %}
+        </div>
+        <div class="right-bloc">
+            <div class="post-infos">
+                {% for tag in post.terms('category') %}
+                    {% set color ='--color: ' %}
+                    {% for value in tag.meta('category_color') %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <p class="tag" style="{{color}}">{{tag}}</p>
+                {% endfor %}
+                <p class="date small">{{post.date}}</p>
+            </div>
+            
+            <h1>{{post.title}}</h1>
+            
+        </div>
+        <div class="mask mask-1"></div>
+        
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper"></div>  
+    </div>
+    <div class="container"></div>
+</section>
+
+
+<section class="breadcrumb">
+    <div class="container">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="{{ site.url }}"><span class="small" itemprop="name">{{home_page_label}}</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="{{ blogUrl }}"><span class="small" itemprop="name">{{blog_page_label}}</span></a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span class="small" itemprop="name">{{post.title}}</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </div>
+    
+</section>
+
+<section class="post-content">
+    <div class="container">
+        <div class="left">
+            {% if post.excerpt %}
+                {{post.excerpt}}
+            {% else %}
+                {{post.description}}
+            {% endif %}
+            <div class="summary"></div>
+            {{ post.content }}  
+        </div>
+        <aside class="right">
+            <div class="cta-block">
+                <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+                {{fields.cta_bloc_text}}
+                {% if fields.cta_block_link.url %}
+                    <a href="{{fields.cta_block_link.url}}" class="cta primary white">{{fields.cta_block_link.title}}</a>
+                {% endif %}
+                <div class="socials">
+    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link }}" class="facebook share"></a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{  post.link  }}" class="linkedin share"></a>
+                    <a href="https://twitter.com/intent/tweet?url={{  post.link  }}" class="twitter share"></a>
+                    <p href="#" class="share-link share" onClick="copyClipboard(event)"></p>
+                    <a href="mailto:" class="mail share"></a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+<script type="text/javascript">
+    function copyClipboard(e){
+        e.preventDefault()
+        let url = document.location.href
+
+        navigator.clipboard.writeText(url).then(function() {
+            e.target.classList.add("copied")
+            setTimeout(function(){
+                e.target.classList.remove('copied')
+            },2000)
+        }, function() {
+            console.log('Copy error')
+        });
+    }
+</script>
+
+<section class="block-latest-article">
+    <div class="container regular">
+        {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+
+        
+            {% if fields.title %}
+                <h2 class="title">{{fields.title}}</h2>
+            {% endif %}
+  
+        
+        <div class="content trio">
+            {% for item in post.get_field("similar_articles") %}
+            
+                <a href="{{post.link}}" class="post">
+                    {% if item.thumbnail %}
+                        {%  set card_picture = item.thumbnail %}
+                    {% else %}
+                        {%  set card_picture = posts_default_picture %}
+                    {% endif %}
+                   
+                    <picture class="post-picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                    </picture>
+                    <div class="top">
+                        {% set color = '--color :' %}
+                        {% for tag in item.terms('categories') %}
+                        
+                            {% for value in tag.category_color %}
+                                {% if loop.index < 4 %}
+                                    {% set color = color ~ value %}
+                                {% endif %}
+                                {% if loop.index < 3 %}
+                                    {% set color = color ~ ',' %}   
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        {% for tag in item.terms('categories') %}
+                            <p class="tag" style="{{color}}">{{tag}}</p>
+                        {% endfor %}
+                        <p class="date">{{item.date}}</p>
+                    </div>
+                    <div class="post-infos">
+                        <h3 class="post-title">{{item.title}}</h3>
+                        
+                        <div class="description">{% if item.excerpt %}{{item.excerpt}}{% else %}{{item.description}}{% endif %}</div>
+                        <p class="cta secondary"><span>{{ item.discover_post_label }}</span></p>
+                        
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

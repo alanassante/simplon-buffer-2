@@ -1,0 +1,126 @@
+{#
+/**
+ * Block Name: Media carousel
+
+ */
+#}
+<section class="block-media-carousel {{fields.style}} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+        {% if fields.title %}
+        <h2 class="title">{{fields.title}}</h2>
+        {% endif %}
+        {% if fields.medias|length > 1 %}
+        <div class="swiper-nav">
+            <div class="prev"></div>
+            <div class="next"></div>
+        </div>
+        {% endif %}
+        <div class="media-carousel-swiper swiper">
+            <div class="swiper-wrapper">
+            {% for item in fields.medias %}
+                {% if item.slide_content == "video" %}
+                    <div class="video-wrapper swiper-slide">
+                        {% if item.choice_video_type == "video" %}
+                            <video class="video" controls="false">
+                                <source src="{{item.video.url}}" type="video/mp4">
+                            </video>
+                        {% else %}
+                            {% set videoId = item.video_youtube|replace({"https://www.youtube.com/watch?v=" : ""}) %}
+                            {% set random_id = "slide-iframe-" ~ random() %}
+                            <div class="video iframe" id="{{random_id}}" data-videoid="{{videoId}}"></div>
+                        {% endif %}
+                         {% if item.cover %}
+                            <picture class="cover">
+                                <source type="image/webp" srcset="{{ Image(item.cover).src|towebp }}, {{ Image(item.cover).src|retina(2)|towebp }} 2x">
+                                <source type="image/jpeg" srcset="{{ Image(item.cover).src|tojpg }}, {{ Image(item.cover).src|retina(2)|tojpg }} 2x">
+                                <img class="fit-cover" src="{{ Image(item.cover).src }}" loading="lazy" alt="{{ Image(item.cover).alt }}"/>
+                                {% if Image(item.cover).caption %}
+                                    <legend>{{ Image(item.cover).caption }}</legend>
+                                {% endif %}
+                            </picture>
+                        {% endif %}
+                    </div>
+                {% elseif item.slide_content == "picture" %}
+                    <picture class="picture swiper-slide">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(item.picture).src|towebp }}, {{ Image(item.picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(item.picture).src|tojpg }}, {{ Image(item.picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
+                    </picture>
+                {% elseif item.slide_content == "text" %}
+                    <div class="text-content swiper-slide">
+                        {{item.text_content}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    const sectionMediaCarousel = document.querySelector('.block-media-carousel')
+    const videoWrappers = sectionMediaCarousel.querySelectorAll(".video-wrapper");
+    function onYouTubeIframeAPIReady() {
+      videoWrappers.forEach((videoWrapper, index) => {
+        const cover = videoWrapper.querySelector(".cover");
+        if (videoWrapper.querySelector(".iframe")) {
+          var player = new YT.Player(
+            `${videoWrapper.querySelector(".iframe").id}`,
+            {
+              videoId: `${
+                videoWrapper.querySelector(".iframe").dataset.videoid
+              }`,
+              events: {
+                onReady: function() {
+                  cover.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    if (
+                      player.getPlayerState() == -1 ||
+                      player.getPlayerState() == 0 ||
+                      player.getPlayerState() == 2 ||
+                      player.getPlayerState() == 5
+                    ) {
+                      player.playVideo();
+                      cover.classList.add("hidden");
+                    } else {
+                      player.stopVideo();
+                      cover.classList.remove("hidden");
+                    }
+                  });
+                },
+              },
+            }
+          );
+        } else {
+          const video = videoWrapper.querySelector("video");
+          cover.addEventListener("click", function(e) {
+            e.preventDefault();
+            playVideo(video, cover);
+          });
+        }
+      });
+    }
+
+    function playVideo(video, cover) {
+      // Video
+
+      if (video.paused) {
+        video.play();
+        cover.classList.add("hidden");
+      } else {
+        video.pause();
+        cover.classList.remove("hidden");
+      }
+
+      // Iframe
+    }
+
+</script>

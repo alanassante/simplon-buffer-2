@@ -1,0 +1,34 @@
+{#
+/**
+ * Block Name: Hero section
+ */
+#}
+<section class="block-hero-form black">
+    <div class="container">
+        <div class="left-bloc">
+            {% if fields.text %}
+                <div class="txt">
+                    {{ fields.text }}
+                </div>
+            {% endif %}
+
+            {% if fields.button.url %}
+                <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta primary">
+                    <span>{{ fields.button.title }}</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="right-bloc">
+            {{fields.form}}
+        </div>
+    
+                {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div>  
+                {# SVG lignes animées #}
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+        
+        
+    </div>
+
+
+</section>

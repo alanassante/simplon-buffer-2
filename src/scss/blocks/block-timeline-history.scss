@@ -1,0 +1,163 @@
+section.block-timeline-history {
+  background: rgba(var(--bg-variant-light-inverse), 1);
+  .container {
+    max-width: none;
+    padding: 0px;
+    flex-direction: column;
+    gap: 90px;
+  }
+
+  .wrapper-title {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .wrapper-timeline {
+    position: relative;
+    max-width: 1920px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    overflow: visible;
+
+    .wrapper-date {
+      display: flex;
+      justify-content: center;
+      padding: 0 15px;
+      cursor: pointer;
+
+      &:not(.active) {
+        .date {
+          color: $black-40-hx;
+
+          &:after {
+            background-color: $black-40-hx;
+          }
+        }
+      }
+
+      .date {
+        position: relative;
+        margin-bottom: 0;
+        padding-bottom: 30px;
+        text-align: center;
+
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 16px;
+          height: 16px;
+          transform: translateX(-50%);
+          background-color: rgba(var(--main-color), 1);
+          border-radius: 100%;
+          outline: 5px solid rgba(var(--bg-variant-light-inverse), 1);
+          z-index: 2;
+        }
+      }
+    }
+
+    .line,
+    .dashed-line {
+      position: absolute;
+      bottom: 8px;
+      height: 1px;
+    }
+
+    .line {
+      background-color: rgba(var(--main-color), 1);
+      transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .dashed-line {
+      width: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='1440' height='1' viewBox='0 0 1440 1' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline opacity='0.4' y1='0.5' x2='1440' y2='0.5' stroke='black' stroke-dasharray='5 5'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0.4;
+    }
+  }
+
+  .wrapper-content {
+    max-width: 815px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding: 0 30px;
+    margin: auto;
+    overflow: hidden;
+
+    .bloc-buttons {
+      display: flex;
+      gap: 10px;
+      .prev,
+      .next {
+        cursor: pointer;
+        text-indent: -200vw;
+      }
+    }
+  }
+
+  .wrapper-cards {
+    position: relative;
+    .card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      padding: 0;
+      opacity: 0;
+      z-index: -1;
+      transform: translateY(10px);
+      transition: opacity 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.3s,
+        transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.2s;
+
+      &.active {
+        opacity: 1;
+        z-index: 1;
+        transform: translateY(0px);
+      }
+      .wrapper-title {
+        padding: 0;
+      }
+      .date {
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $size4) {
+  section.block-timeline-history {
+    .container {
+      gap: 40px;
+    }
+
+    .wrapper-title,
+    .wrapper-content {
+      padding: 0 20px;
+    }
+
+    .wrapper-content {
+      gap: 30px;
+    }
+
+    .wrapper-timeline {
+      align-self: flex-start;
+      transition: transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.2s;
+      .wrapper-date {
+        padding: 0 5px;
+        .date {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+section.block-horizontal-steps {
+  background-color: rgba(var(--black-color), 1);
+  position: relative;
+
+  div.container {
+    flex-direction: column;
+    &:nth-child(1) {
+      padding-bottom: 180px;
+    }
+    &:nth-child(2) {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: row;
+      padding-top: 45px;
+      border-top: solid 1px #5d5d69;
+      .bottom-text {
+        width: fit-content;
+        * {
+          max-width: 745px;
+          width: fit-content;
+          color: white;
+        }
+      }
+      .cta {
+        height: fit-content;
+        flex-wrap: nowrap;
+      }
+    }
+    .tiles-pattern-wrapper {
+      top: -135px;
+      right: 0px;
+    }
+    h2 {
+      width: 100%;
+    }
+
+    .bottom,
+    .top,
+    .responsive-display {
+      position: relative;
+      .step {
+        position: relative;
+        .index {
+          font-family: $font1;
+          font-size: 55px;
+          font-weight: 400;
+          line-height: 66.17px;
+        }
+        &::before {
+          content: "";
+          border-radius: 50%;
+          width: 10px;
+          height: 10px;
+          background-color: white;
+          position: absolute;
+          left: -5px;
+          z-index: 1;
+        }
+
+        * {
+          color: white;
+        }
+      }
+    }
+    .top,
+    .bottom {
+      width: 100%;
+      display: flex;
+      .step {
+        position: relative;
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 1px;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-image: url("data:image/svg+xml,%3Csvg width='1' height='264' viewBox='0 0 1 264' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0.5' y1='264' x2='0.500012' y2='-2.18557e-08' stroke='%235D5D69' stroke-dasharray='5 5'/%3E%3C/svg%3E%0A");
+        }
+        * {
+          color: white;
+        }
+      }
+    }
+    .responsive-display {
+      display: none;
+      flex-direction: column;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 30px;
+        width: 1px;
+        background-color: white;
+        height: calc(100% * calc(calc(var(--total) - 1) / var(--total)));
+      }
+      .step {
+        padding: 0px 0px 30px 20px;
+        &::before {
+          top: 30px;
+        }
+
+        * {
+          color: white;
+        }
+      }
+    }
+    .bottom {
+      position: relative;
+      .empty {
+        max-width: 205px;
+        width: 100%;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 1px;
+        background-color: white;
+        width: calc(100% * calc(var(--total) / calc(var(--total) + 1)));
+      }
+      .step {
+        padding: 65px 80px 0px 10px;
+        &::after {
+        }
+        &::before {
+          top: -5px;
+        }
+      }
+    }
+    .top {
+      .step {
+        padding: 0px 80px 65px 10px;
+        &::after {
+        }
+        &::before {
+          bottom: -5px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: $size1) {
+  section.block-horizontal-steps {
+    div.container {
+      &:nth-child(1) {
+        padding-bottom: 60px;
+      }
+      &:nth-child(2) {
+        padding-top: 30px;
+      }
+      .bottom,
+      .top {
+        display: none;
+      }
+      .responsive-display {
+        display: flex;
+      }
+    }
+  }
+}

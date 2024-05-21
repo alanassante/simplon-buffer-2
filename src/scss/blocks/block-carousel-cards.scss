@@ -1,0 +1,121 @@
+section.block-carousel-cards {
+  background-color: rgba(var(--bg-variant-light-inverse), 1);
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 90px;
+    .title {
+      margin-bottom: 0;
+    }
+    .carousel-cards-nav {
+      margin-left: auto;
+      gap: 10px;
+      display: flex;
+      width: fit-content;
+
+      &.no-display-desktop {
+        display: none;
+      }
+
+      .carousel-cards-nav-prev,
+      .carousel-cards-nav-next {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .swiper-cards {
+    width: 100%;
+  }
+
+  .card {
+    max-width: 393px;
+    width: 100%;
+    background-color: $black-hx;
+    padding: 45px 30px;
+    border-radius: 5px;
+    transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    overflow: hidden;
+    height: 100%;
+    &:not(.swiper-slide-visible) {
+      opacity: 0.2;
+    }
+
+    .picture {
+      max-width: 45px;
+      max-height: 45px;
+      margin-bottom: 30px;
+      left: 0;
+    }
+
+    .title {
+      color: $white-hx;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    > * {
+      color: $grey-hx;
+    }
+  }
+}
+
+// CORP
+body.corp {
+  section.block-carousel-cards {
+    background-color: rgba(var(--bg-variant-light-inverse), 0.5);
+  }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $size1) {
+  section.block-carousel-cards {
+    .wrapper-top {
+      margin-bottom: 45px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+      .carousel-cards-nav {
+        margin-left: 0;
+        &.no-display-desktop {
+          display: flex;
+        }
+      }
+    }
+
+    .swiper-cards {
+      max-width: 395px;
+    }
+  }
+}
+@media screen and (max-width: $size5) {
+  section.block-carousel-cards {
+    .container {
+      gap: 20px;
+    }
+    .wrapper-top {
+    }
+  }
+}
+@media screen and (max-width: $size7) {
+  section.block-carousel-cards {
+    .container {
+      gap: 20px;
+    }
+    .wrapper-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .card {
+      width: 100%;
+    }
+  }
+}

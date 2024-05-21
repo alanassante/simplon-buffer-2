@@ -1,0 +1,56 @@
+{#
+/**
+ * Block Name: Key numbers
+ */
+#}
+
+<section class="block-key-numbers {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container regular">
+        {% if fields.title %}
+        <h2 class="title">{{fields.title}}</h2> 
+        {% endif %}
+        {# SVG pattern lines #}
+        <div class="line-pattern tech-pattern-wrapper" ></div>  
+    
+    </div>
+    <div class="container regular {% if fields.reversed %}reversed{% endif %}">
+        <div class="numbers">
+            {% for item in fields.numbers %}
+            
+                <div class="block block-{{loop.index}}">
+                    <p class="big-number"><span class="key-value" data-value="{{item.value}}">0</span>{{item.additional_text}}</p>
+                    <p class="description">{{item.description}}</p>
+                </div>
+                
+            {% endfor %}    
+        </div>
+        <aside class="aside" style="--block-color:{{ block_color }}">
+            {% if fields.btn_description or fields.button.title %}
+                <div class="block block-text">
+                    {% if fields.btn_description %}
+                        <h3 class="btn-description">{{fields.btn_description}}</h3>
+                    {% endif %}
+                    {% if fields.button.url %}
+                        <a href="{{fields.button.url}}" class="cta primary white">{{fields.button.title}}</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="block">
+                {% if fields.picture %}
+                <picture class="picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(fields.picture).src|towebp }}, {{ Image(fields.picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(fields.picture).src|tojpg }}, {{ Image(fields.picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(fields.picture).src }}" width="{{ Image(fields.picture).width }}" height="{{ Image(fields.picture).height }}" loading="lazy" alt="{{ Image(fields.picture).alt }}" />
+                </picture>
+                {% endif %}
+            </div>
+        </aside>
+    </div>
+
+</section>

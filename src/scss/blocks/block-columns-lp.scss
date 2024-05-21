@@ -1,0 +1,33 @@
+section.block-columns-lp {
+  padding: 150px 0px;
+  background-color: rgba(var(--white-color), 1);
+  .container {
+    justify-content: space-between;
+    div.side {
+      width: 100%;
+      &.left {
+        max-width: 605px;
+      }
+      &.right {
+        max-width: 500px;
+      }
+      .cta {
+        margin-top: 45px;
+      }
+    }
+  }
+}
+@media screen and (max-width: $size1) {
+  section.block-columns-lp {
+    div.container {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      div.side.right,
+      div.side.left {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}

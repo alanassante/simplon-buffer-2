@@ -1,0 +1,45 @@
+{#
+/**
+ * Block Name: Carousel Cards
+ */
+#}
+<section class="block-carousel-cards{{ block.className }} {% if fields.dark %}{% else %}black{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container{% if fields.reversed %}reversed{% endif %}">
+        <div class="wrapper-top">
+            {% if fields.title %}
+                <h2 class="title">{{fields.title}}</h2>
+            {% endif %}
+            <div class="carousel-cards-nav swiper-nav {% if fields.bloc_cards|length <= 3 %}no-display-desktop{% endif %}">
+                <div class="carousel-cards-nav-prev prev"></div>
+                <div class="carousel-cards-nav-next next"></div>
+            </div>
+        </div>
+        <div class="swiper swiper-cards">
+            <div class="swiper-wrapper">
+                {% for item in fields.bloc_cards %}
+                    <div class="swiper-slide card">
+                        {% if item.picture %}
+                            <picture class="picture">
+                                <source
+                                type="image/webp"
+                                srcset="{{ Image(item.picture).src|towebp }}, {{ Image(item.picture).src|retina(2)|towebp }} 2x"
+                                >
+                                <source
+                                type="image/jpeg"
+                                srcset="{{ Image(item.picture).src|tojpg }}, {{ Image(item.picture).src|retina(2)|tojpg }} 2x"
+                                >
+                                <img src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
+                            </picture>
+                        {% endif %}
+                        {% if item.title %}<h4 class="title">{{item.title}}</h4>{% endif %}
+                        {% if item.text %}{{item.text}}{% endif %}
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+
+        
+    </div>
+</section>

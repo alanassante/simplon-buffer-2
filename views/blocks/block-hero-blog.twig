@@ -1,0 +1,65 @@
+{#
+/**
+ * Block Name: Hero blog
+ */
+#}
+
+{% set postData = Post(fields.front_item) %}
+
+{% for item in postData %}
+<section class="block-hero-blog black" data-title="{{item.title}}" >
+    <div  class="container {% if fields.section_style == "v1" %}v1{% elseif fields.section_style == "v2" %}v2{% endif %}">
+        <div class="left-bloc">
+            {% if item.thumbnail %}
+                <picture class="picture">
+                    <source
+                    type="image/webp"
+                    srcset="{{ Image(item.thumbnail).src|towebp }}, {{ Image(item.thumbnail).src|retina(2)|towebp }} 2x"
+                    >
+                    <source
+                    type="image/jpeg"
+                    srcset="{{ Image(item.thumbnail).src|tojpg }}, {{ Image(item.thumbnail).src|retina(2)|tojpg }} 2x"
+                    >
+                    <img src="{{ Image(poitemst.thumbnail).src }}" width="{{ Image(item.thumbnail).width }}" height="{{ Image(item.thumbnail).height }}" loading="lazy" alt="{{ Image(item.thumbnail).alt }}" />
+                </picture>
+            {% endif %}
+        </div>
+        <div class="right-bloc">
+            <div class="post-infos">
+                {% for tag in item.terms('category') %}
+                    {% set color ='--color: ' %}
+                    {% for value in tag.meta('category_color') %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <p class="tag" style="{{color}}">{{tag}}</p>
+                {% endfor %}
+                <p class="date small">{{item.date}}</p>
+            </div>
+            {% if fields.section_style == "v1" %}
+                <h2>{{item.title}}</h2>
+                <div class="post-summary">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</div>
+            {% else %}
+                <h1>{{item.title}}</h1>
+            {% endif %}
+            {% if fields.button.url %}
+                <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta primary">
+                    <span>{{ fields.button.title }}</span>
+                </a>
+            {% endif %}
+            
+        </div>
+        <div class="mask mask-1"></div>
+        
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper"></div>  
+    </div>
+
+    {% if fields.section_style == "v2" %}
+        <div class="container white-space"></div>
+    {% endif %}
+</section>
+{% endfor %}

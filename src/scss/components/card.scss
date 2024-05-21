@@ -1,0 +1,130 @@
+.card {
+  padding-bottom: 20px;
+  max-width: calc(33% - 16px);
+  min-width: 335px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(var(--color), 0.05);
+  padding: 0px 20px 20px 20px;
+  text-decoration: none;
+  &:hover {
+    .picture {
+      img {
+        scale: 1.1;
+      }
+    }
+    .post-title {
+      text-decoration: underline;
+    }
+  }
+  .picture {
+    width: calc(100% + 40px);
+    height: 200px;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    left: -20px;
+    margin-bottom: 20px;
+
+    img {
+      scale: 1;
+      transition: scale 0.3s ease-in-out;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .tag {
+    margin: 0px;
+    background-color: transparent;
+    color: rgba(var(--color), 0.6);
+    border: none;
+    padding-left: 0px;
+  }
+  .title {
+    margin-bottom: 10px;
+  }
+  .description {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: 0;
+      left: 0px;
+      right: 0px;
+      height: 1px;
+      background-color: #ccccd7;
+    }
+  }
+  .cta {
+    margin-top: 20px;
+  }
+  .characteristic {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    .picto {
+      width: 20px;
+      height: 20px;
+      img {
+      }
+    }
+    span {
+      display: block;
+    }
+  }
+}
+.post:not(.block-listing-cards) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: transparent;
+  text-decoration: none;
+  &:hover {
+    .picture {
+      img {
+        scale: 1.1;
+      }
+    }
+    .post-title {
+      text-decoration: underline;
+    }
+  }
+  .picture {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    left: 0px;
+    margin-bottom: 20px;
+
+    img {
+      scale: 1;
+      transition: scale 0.3s ease-in-out;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .tag {
+    margin: 0px;
+    border: rgba(var(--color), 0.5);
+    background-color: rgba(var(--color), 0.2);
+    color: rgba(var(--black-color), 1);
+  }
+  .title {
+    margin: 20px 0px 10px 0px;
+  }
+  .description {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .cta {
+    margin-top: auto;
+  }
+}

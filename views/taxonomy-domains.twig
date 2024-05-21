@@ -1,0 +1,58 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set term = TimberTerm(domains) %}
+
+{#
+/**
+ * Block Name: Hero section
+ */
+#}
+
+<section class="block-hero-section black">
+    <div class="container v3">
+        <div class="left-block">
+            <div class="txt">
+                <h1 class="title">{{this_tax.post_title}}</h1>
+                {% if fields.text %}
+                    {{ fields.text }}
+                {% endif %}
+                </div>
+            {% if term.button.url %}
+                <a href="{{ term.button.url }}" {% if term.button.target %}target="{{ term.button.target }}"{% endif %} {% if term.button.target %}rel="noopener"{% endif %} class="cta primary">
+                    <span>{{ term.button.title }}</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="right-block">
+            
+                <div class="blocks-list">
+                    <ul>
+                        {% for item in term.blocs %}
+                            <li class="block">
+                                <picture class="picto picture">
+                                    <source
+                                    type="image/webp"
+                                    srcset="{{ Image(item.picto).src|towebp }}, {{ Image(item.picto).src|retina(2)|towebp }} 2x"
+                                    >
+                                    <source
+                                    type="image/jpeg"
+                                    srcset="{{ Image(item.picto).src|tojpg }}, {{ Image(item.picto).src|retina(2)|tojpg }} 2x"
+                                    >
+                                    <img src="{{ Image(item.picto).src }}" width="{{ Image(item.picto).width }}" height="{{ Image(item.picto).height }}" loading="lazy" alt="{{ Image(item.picto).alt }}" />
+                                </picture>
+                                <h4>{{ item.text }}</h4>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            
+        </div>
+        {# SVG pattern tech à recopier #}
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+        {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+    </div>
+</section>
+{{post.content}}
+{% endblock %}

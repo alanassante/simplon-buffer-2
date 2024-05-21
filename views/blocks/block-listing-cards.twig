@@ -1,0 +1,251 @@
+{#
+/**
+ * Block Name: Liste de cartes
+ */
+#}
+<section class="block-listing-cards {{ fields.listing_type }} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+        <h2 class="title">{{fields.title}}</h2>
+        {% if fields.listing_type == "post" %}
+            <div class="blog-nav">
+                <p class="big nav-label">{{fields.categories_nav_label}}</p>
+                <div class="tags">
+                {% for item in categories %}
+                    {% set color ='--color: ' %}
+                    {% for value in item.category_color %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{item.link}}#scroll-target">
+                        <p class="tag" data-domain="{{item.slug}}" style="{{color}}">{{item}}</p>
+                    </a>
+                {% endfor %}
+                </div>
+            </div>
+        {% else %}
+        <form class="form" method="POST" data-action="{{ ajax_url }}">
+            <p class="filters-label">{{fields.filters_label}}</p>
+            {% if fields.listing_type == "events" %}
+
+                {% if event_types|length > 1 %}
+                    <div class="input-wrapper">
+                        <select data-test="" data-type="types" name="" id="" class="input">
+                            <option value="" selected disabled>Types</option>
+                            {% for option in event_types %}
+                                <option value="{{option.slug}}">{{option}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+                    <div class="input-wrapper">
+                        <select data-test="" data-type="months" name="" id="month-select" class="input">
+                            <option value="" selected disabled>Mois</option>
+                            <option value="01">Janvier</option>
+                            <option value="02">Février</option>
+                            <option value="03">Mars</option>
+                            <option value="04">Avril</option>
+                            <option value="05">Mai</option>
+                            <option value="06">Juin</option>
+                            <option value="07">Juillet</option>
+                            <option value="08">Aout</option>
+                            <option value="09">Septembre</option>
+                            <option value="10">Octobre</option>
+                            <option value="11">Novembre</option>
+                            <option value="12">Décembre</option>
+                        </select>
+                    </div>
+                {% if countries|length > 1 %}
+                    <div class="input-wrapper">
+                        <select data-test="{{test.countries}}" data-type="countries" name="" id="" class="input">
+                            <option value="" selected disabled>Pays</option>
+                            {% for option in countries %}
+                                <option value="{{option.slug}}">{{option}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if linked_formations|length > 1 %}
+                <div class="input-wrapper">
+                    <select data-type="linked_formations" name="" id="" class="input">
+                        <option value="" selected disabled>Formations associée</option>
+                        {% for option in linked_formations %}
+                            <option value="{{option.slug}}">{{option}}</option>
+                        {% endfor %}
+                    </select>
+                </div> 
+                {% endif %}
+
+                {% if levels|length > 1 %}
+                <div class="input-wrapper">
+                    <select data-type="levels" name="" id="" class="input">
+                        <option value="" selected disabled>Niveaux</option>
+                        {% for option in levels %}
+                            <option value="{{option.slug}}">{{option}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% endif %}
+
+                {% if domains|length > 1 %}
+                    <div class="input-wrapper">
+                        <select data-type="domains" name="" id="" class="input">
+                            <option value="" selected disabled>Domaines</option>
+                            {% for option in domains %}
+                                <option value="{{option.slug}}">{{option}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                {% endif %}
+
+                {% if rythms|length > 1 %}
+                    <div class="input-wrapper">
+                        <select data-type="rythms" name="" id="" class="input">
+                            <option value="" selected disabled>Rythme</option>
+                            {% for option in rythms %}
+                                <option value="{{option.slug}}">{{option}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+            {% endif %}
+            {% if distant|length > 1 %}
+                    <div class="input-wrapper">
+                        <select data-type="distant" name="" id="" class="input">
+                            <option value="" selected disabled>Localisation</option>
+                            {% for option in distant %}
+                                <option value="{{option.slug}}">{{option}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+            {% if regions|length > 1 %}
+                <div class="input-wrapper">
+                    <select data-type="regions" name="" id="" class="input">
+                        <option value="" selected disabled>Région</option>
+                        {% for option in regions %}
+                            <option value="{{option.slug}}">{{option}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}  
+        </form>
+        {% endif %}
+        {% if fields.listing_type != "post"%}
+            <div class="target-active-filters">
+                <a class="cta secondary reset">{{fields.reset_filter_label}}</a>
+            </div>
+        {% endif %}
+        <div class="listing">
+            
+            {% for item in listPosts %}
+                {% set color ='--color: ' %}
+                {% if item.type == "formations" %}
+                    {% for tag in item.terms('domains') %}
+                        {% for value in tag.domain_color %}
+                            {% if loop.index < 4 %}
+                                {% set color = color ~ value %}
+                            {% endif %}
+                            {% if loop.index < 3 %}
+                                {% set color = color ~ ',' %}   
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% elseif item.type == "post" %}
+                    {% for tag in item.terms('category') %}
+                        {% for value in tag.category_color %}
+                            {% if loop.index < 4 %}
+                                {% set color = color ~ value %}
+                            {% endif %}
+                            {% if loop.index < 3 %}
+                                {% set color = color ~ ',' %}   
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% elseif item.type == "events" %}
+                    {% for value in item.meta('event_color') %}
+                        {% if loop.index < 4 %}
+                            {% set color = color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set color = color ~ ',' %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <a href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class=" {% if fields.listing_type == "post" %}post{% else %}card{% endif %}" style="{{color}};">
+                    {% if item.thumbnail %}
+                        {%  set card_picture = item.thumbnail %}
+                    {% else %}
+                        {% if fields.listing_type == "events" %}
+                            {%  set card_picture = events_default_picture %}
+                        {% elseif fields.listing_type == "formations" %}
+                            {%  set card_picture = formations_default_picture %}
+                        {% elseif fields.listing_type == "post" %}
+                            {%  set card_picture = posts_default_picture %}
+                        {% endif %}
+                    {% endif %}
+                    <picture class="picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                    </picture>
+                    {% if fields.listing_type == "formations" %}
+                        {% for tag in item.terms('domains') %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
+                    {% elseif fields.listing_type == "post" %}
+                        {% for tag in item.terms('category') %}
+                            <p class="tag">{{tag}}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    <h4 class="title">{{item.title}}</h4>
+                    {% if item.type == "events" %}
+                        <h4 class="event-date">{{item.start_date|date("d/m/y")}}</h4>
+                    {% endif %}
+                    <p class="description">{% if item.description %}{{item.description}}{% else %}{{ item.excerpt({ words: 20 })}}{% endif %}</p>
+                    {% for custom_char in item.meta('custom_chars') %}
+                        <p class="characteristic">
+                            {% if custom_char.picto %}
+                            <picture class="picto">
+                                <source
+                                type="image/webp"
+                                srcset="{{ Image(custom_char.picto).src|towebp }}, {{ Image(custom_char.picto).src|retina(2)|towebp }} 2x"
+                                >
+                                <source
+                                type="image/jpeg"
+                                srcset="{{ Image(custom_char.picto).src|tojpg }}, {{ Image(custom_char.picto).src|retina(2)|tojpg }} 2x"
+                                >
+                                <img class="fit-cover" src="{{ Image(custom_char.picto).src }}" width="{{ Image(custom_char.picto).width }}" height="{{ Image(custom_char.picto).height }}" loading="lazy" alt="{{ Image(custom_char.picto).alt }}" />
+                            </picture>
+                            {% endif %}
+                            <span>{{custom_char.characteristic}}</span>
+                        </p>
+                    {% endfor %}
+                    
+                    <p class="cta secondary">
+                        <span>{% if fields.listing_type == "events" %}{{ item.discover_event_label }}{% elseif fields.listing_type == "formations" %}{{ item.discover_training_label }}{% elseif fields.listing_type == "post" %}{{ item.discover_post_label }}{% endif %}</span>
+                    </p>
+                </a>
+
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{pagination}}
+        </div>
+    </div>
+</section>
+

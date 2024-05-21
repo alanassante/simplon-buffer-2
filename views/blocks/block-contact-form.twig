@@ -1,0 +1,23 @@
+{#
+/**
+ * Block Name: Contact form
+ */
+#}
+<section class="block-contact-form {{ block.className }} {{fields.style}} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
+    <div class="container regular">
+
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div>
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div>
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div>
+        {% if fields.form %}
+            <div class="form-wrapper">
+                {{fields.form}}
+            </div>
+        {% endif %}
+        {% if fields.text_content %}
+            <div class="text-content">
+                {{fields.text_content}}
+            </div>
+        {% endif %}
+    </div>
+</section>

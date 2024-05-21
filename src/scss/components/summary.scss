@@ -1,0 +1,11 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 45px 0px;
+  a {
+    display: block;
+    text-decoration: none;
+    color: rgba(var(--main-color), 1);
+  }
+}

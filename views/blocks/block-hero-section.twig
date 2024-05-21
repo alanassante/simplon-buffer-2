@@ -1,0 +1,86 @@
+{#
+/**
+ * Block Name: Hero section
+ */
+#}
+<section class="block-hero-section black">
+    <div class="container {% if fields.section_style == "v1" %}v1{% elseif fields.section_style == "v2" %}v2{% elseif fields.section_style == "v3" %}v3{% endif %}">
+        <div class="left-block">
+            {% if fields.text %}
+                <div class="txt">
+                    {{ fields.text }}
+                </div>
+            {% endif %}
+            {% if fields.button.url %}
+                <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta primary">
+                    <span>{{ fields.button.title }}</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="right-block">
+            {% if fields.section_style == "v1" %}
+                {% if fields.image %}
+                    <picture class="small-picture picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(fields.image).src|towebp }}, {{ Image(fields.image).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(fields.image).src|tojpg }}, {{ Image(fields.image).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(fields.image).src }}" width="{{ Image(fields.image).width }}" height="{{ Image(fields.image).height }}" loading="lazy" alt="{{ Image(fields.image).alt }}" />
+                    </picture>
+                {% endif %}
+                {% if fields.item|length > 0 %}
+                    <div class="items">
+                        <ul>
+                            {% for item in fields.items %}
+                            <li>{{ item.text }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% elseif fields.section_style == "v2" %}
+                {% if fields.image %}
+                    <picture class="big-picture picture">
+                        <source
+                        type="image/webp"
+                        srcset="{{ Image(fields.image).src|towebp }}, {{ Image(fields.image).src|retina(2)|towebp }} 2x"
+                        >
+                        <source
+                        type="image/jpeg"
+                        srcset="{{ Image(fields.image).src|tojpg }}, {{ Image(fields.image).src|retina(2)|tojpg }} 2x"
+                        >
+                        <img src="{{ Image(fields.image).src }}" width="{{ Image(fields.image).width }}" height="{{ Image(fields.image).height }}" loading="lazy" alt="{{ Image(fields.image).alt }}" />
+                    </picture>
+                {% endif %}
+            {% elseif fields.section_style == "v3" and fields.blocs|length > 0 %}
+                <div class="blocks-list">
+                    <ul>
+                        {% for item in fields.blocs %}
+                            <li class="block">
+                                <picture class="picto picture">
+                                    <source
+                                    type="image/webp"
+                                    srcset="{{ Image(item.picto).src|towebp }}, {{ Image(item.picto).src|retina(2)|towebp }} 2x"
+                                    >
+                                    <source
+                                    type="image/jpeg"
+                                    srcset="{{ Image(item.picto).src|tojpg }}, {{ Image(item.picto).src|retina(2)|tojpg }} 2x"
+                                    >
+                                    <img src="{{ Image(item.picto).src }}" width="{{ Image(item.picto).width }}" height="{{ Image(item.picto).height }}" loading="lazy" alt="{{ Image(item.picto).alt }}" />
+                                </picture>
+                                <h4>{{ item.text }}</h4>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+        {# SVG pattern tech à recopier #}
+        <div class="lines-pattern-wrapper tech-pattern-wrapper" ></div> 
+        {# SVG mosaiques carrés #}
+        <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div> 
+    </div>
+</section>

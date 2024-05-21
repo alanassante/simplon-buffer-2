@@ -1,0 +1,61 @@
+{#
+/**
+ * Block Name: Tabs
+ *
+ */
+#}
+
+<section class="block-tabs {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container">
+        {% if fields.title %}
+            <h2 class="title">{{fields.title}}</h2>
+        {% endif %}
+        {% if fields.button.url %}
+            <a href="{{ fields.button.url }}" {% if fields.button.target %}target="{{ fields.button.target }}"{% endif %} {% if fields.button.target %}rel="noopener"{% endif %} class="cta primary">
+                {{ fields.button.title }}
+            </a>
+        {% endif %}
+    </div>
+    <div class="container">
+        
+        {% if fields.allow_arrows %}
+            <div class="swiper-nav">
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div>
+        {% endif %}
+        <div class="swiper-pages" data-labels="{% for item in fields.tabs %}{% if loop.index > 1%}/-/{% endif %}{{item.tab_label}}{% endfor %}">
+
+        </div>
+        <div class="tabs-swiper {% if fields.allow_arrows %}small{% endif %}">
+            <div class="swiper-wrapper">
+                {% for item in fields.tabs %}
+                    <div class="swiper-slide">
+                        {% if Image(item.image).src %}
+                        <picture class="picture">
+                            <source
+                            type="image/webp"
+                            srcset="{{ Image(item.image).src|towebp }}, {{ Image(item.image).src|retina(2)|towebp }} 2x"
+                            >
+                            <source
+                            type="image/jpeg"
+                            srcset="{{ Image(item.image).src|tojpg }}, {{ Image(item.image).src|retina(2)|tojpg }} 2x"
+                            >
+                            <img src="{{ Image(item.image).src }}" width="{{ Image(item.image).width }}" height="{{ Image(item.image).height }}" loading="lazy" alt="{{ Image(item.image).alt }}" />
+                        </picture>
+                        {% endif %}
+                        <div class="text-content">
+                            {{item.text_content}}
+                            {% if item.button.url %}
+                            <a href="{{ item.button.url }}" {% if item.button.target %}target="{{ item.button.target }}"{% endif %} {% if item.button.target %}rel="noopener"{% endif %} class="cta secondary">
+                                {{ item.button.title }}
+                            </a>
+                        {% endif %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

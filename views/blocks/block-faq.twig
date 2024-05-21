@@ -1,0 +1,38 @@
+{#
+/**
+ * Block Name: faq
+ */
+#}
+<section class="block-faq {{ block.className }} {% if fields.dark %}{% else %}black{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" id="{{ fields.id_block }}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
+    <div class="container regular {% if fields.reversed %}reversed{% endif %}">
+
+        {% if fields.picture %}
+            <picture class="wrapper-img">
+                <source type="image/webp" srcset="{{ Image(fields.picture).src|towebp }}, {{ Image(fields.picture).src|retina(2)|towebp }} 2x">
+                <source type="image/jpeg" srcset="{{ Image(fields.picture).src|tojpg }}, {{ Image(fields.picture).src|retina(2)|tojpg }} 2x">
+                <img src="{{ Image(fields.picture).src }}" width="{{ Image(fields.picture).width }}" height="{{ Image(fields.picture).height }}" loading="lazy" alt="{{ Image(fields.picture).alt }}" />
+            </picture>
+        {% endif %}
+
+
+        <div class="wrapper-content">
+            {% if fields.title %}<h2>{{fields.title}}</h2>{% endif %}
+
+            {% if fields.button.url %}
+            <a href="{{fields.button.url}}" class="cta primary {% if fields.dark %}white{% endif %}">{{fields.button.title}}</a>
+            {% endif %}
+
+            {% if fields.accordeons|length > 0 %}
+             <div class="wrapper-accordeons">
+                {% for item in fields.accordeons %}
+                <div class="accordeon">
+                    <p class="accordeon-title">{{item.title}}</p>
+                    <div class="accordeon-content">{{item.text}}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        
+    </div>
+</section>
