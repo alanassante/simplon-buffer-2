@@ -68,6 +68,7 @@ section.block-horizontal-steps {
       display: flex;
       .step {
         position: relative;
+        max-width: 440px;
         &::after {
           position: absolute;
           top: 0;
@@ -110,10 +111,7 @@ section.block-horizontal-steps {
     }
     .bottom {
       position: relative;
-      .empty {
-        max-width: 205px;
-        width: 100%;
-      }
+
       &::after {
         content: "";
         position: absolute;
@@ -132,6 +130,10 @@ section.block-horizontal-steps {
       }
     }
     .top {
+      justify-content: center;
+      .empty {
+        width: 100%;
+      }
       .step {
         padding: 0px 80px 65px 10px;
         &::after {

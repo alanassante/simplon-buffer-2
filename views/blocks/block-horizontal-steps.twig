@@ -19,8 +19,9 @@
 			{% endfor %}		
 		</div>
 		<div class="top" >
+			
 			{% for item in fields.steps %}
-				{% if (loop.index is odd) %}
+				{% if (loop.index is even) %}
 					<div class="step">
 						<p class="index">{{ loop.index }}</p>
 						{{ item.text_content }}
@@ -29,9 +30,9 @@
 			{% endfor %}	
 		</div>
 		<div class="bottom" style="--total:{{((fields.steps|length - 1) / 2)|number_format(0)}}">
-			<div class="empty"></div>
+			
 			{% for item in fields.steps %}
-				{% if (loop.index is even) %}
+				{% if (loop.index is odd) %}
 					<div class="step">
 						<p class="index">{{ loop.index }}</p>
 						{{ item.text_content }}
