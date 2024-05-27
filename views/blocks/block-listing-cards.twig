@@ -211,7 +211,7 @@
                         {% endfor %}
                     {% endif %}
 
-                    <h4 class="title">{{item.title}}</h4>
+                    <h4 class="title">{% if fields.listing_type == "formations" %}{{item.short_title}}{% else %}{{item.title}}{% endif %}</h4>
                     {% if item.type == "events" %}
                         <h4 class="event-date">{{item.start_date|date("d/m/y")}}</h4>
                     {% endif %}

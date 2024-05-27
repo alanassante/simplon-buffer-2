@@ -38,7 +38,7 @@
         {% for tag in item.terms('domains') %}
             <p class="tag">{{tag}}</p>
         {% endfor %}
-        <h5 class="title">{{item.title}}</h5>
+        <h5 class="title">{{item.short_title}}</h5>
         <p class="description">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</p>
         
         

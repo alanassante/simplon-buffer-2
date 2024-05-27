@@ -40,57 +40,42 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
     $region = get_field("region");
     $formation = get_field("formation");
 
-    global $args;
+   
+    $args = array(
+        'post_type' => $postType,
+        'posts_per_page' => 12,
+        'paged' => $paged,
+    );
+
     // Query Articles
     if($domain){   
-        $args = array(
-            'post_type' => $postType,
-            'posts_per_page' => 12,
-            'paged' => $paged,
-            'tax_query' => array(
-                array (
-                    'taxonomy' => 'domains',
-                    'field' => 'id',
-                    'terms' => $domain,
-                )
+        $args['tax_query'][] = [
+            array (
+                'taxonomy' => 'domains',
+                'field' => 'id',
+                'terms' => array($domain),
             ),
-        ); 
+        ];   
     }
-    elseif($region){
-        $args = array(
-            'post_type' => $postType,
-            'posts_per_page' => 12,
-            'paged' => $paged,
-            'tax_query' => array(
-                array (
-                    'taxonomy' => 'regions',
-                    'field' => 'id',
-                    'terms' => $region,
-                )
+    if($region){
+        $args['tax_query'][] = [
+            array (
+                'taxonomy' => 'regions',
+                'field' => 'id',
+                'terms' => array($region),
             ),
-        );
+        ];  
     }
-    elseif($formation){
-        $args = array(
-            'post_type' => $postType,
-            'posts_per_page' => 12,
-            'paged' => $paged,
-            'tax_query' => array(
-                array (
-                    'taxonomy' => 'linked_formations',
-                    'field' => 'id',
-                    'terms' => $formation,
-                )
+    if($formation){
+        $args['tax_query'][] = [
+            array (
+                'taxonomy' => 'linked_formations',
+                'field' => 'id',
+                'terms' => array($formation),
             ),
-        ); 
+        ];  
     }
-    else{
-        $args = array(
-            'post_type' => $postType,
-            'posts_per_page' => 12,
-            'paged' => $paged,
-        );
-    }
+  
 
     $the_query = new WP_Query($args);
     $context['listPosts'] = Timber::get_posts($args);

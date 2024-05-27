@@ -34,7 +34,7 @@
                 "id": ""
             },
             "choices": {
-                "formations": "Formations",
+                "formations": "Sessions",
                 "events": "Événements",
                 "post": "Articles de blog"
             },
@@ -141,7 +141,7 @@
                 "class": "",
                 "id": ""
             },
-            "taxonomy": "category",
+            "taxonomy": "linked_formations",
             "add_term": 0,
             "save_terms": 0,
             "load_terms": 0,
@@ -493,5 +493,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715763845
+    "modified": 1716390006
 }

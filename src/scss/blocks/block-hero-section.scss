@@ -36,6 +36,10 @@ section.block-hero-section {
       div.left-block {
         max-width: 575px;
       }
+      div.right-block {
+        max-width: 600px;
+        width: 100%;
+      }
     }
     &.v3 {
       gap: 50px 113px;
@@ -64,6 +68,11 @@ section.block-hero-section {
     div.right-block {
       position: relative;
       z-index: 2;
+      .right-block {
+        .picture {
+          overflow: hidden;
+        }
+      }
       div.items {
         position: absolute;
         padding: 30px;
@@ -245,18 +254,6 @@ section.block-hero-section {
     }
   }
 }
-@media screen and (max-width: 375px) {
-  section.block-hero-section {
-    div.container {
-      div.right-block {
-        div.items {
-          right: -60px;
-          transform: translateX(0);
-        }
-      }
-    }
-  }
-}
 @media screen and (max-width: 400px) {
   section.block-hero-section {
     div.container {
@@ -265,6 +262,18 @@ section.block-hero-section {
           .bloc {
             margin-left: 30px;
           }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  section.block-hero-section {
+    div.container {
+      div.right-block {
+        div.items {
+          right: -60px;
+          transform: translateX(0);
         }
       }
     }
