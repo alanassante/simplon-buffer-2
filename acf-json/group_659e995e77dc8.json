@@ -1,6 +1,6 @@
 {
     "key": "group_659e995e77dc8",
-    "title": "CPT : Formations",
+    "title": "CPT : Sessions",
     "fields": [
         {
             "key": "field_659e995e3eaa7",
@@ -244,5 +244,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715070936
+    "modified": 1716986430
 }

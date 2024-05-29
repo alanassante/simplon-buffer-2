@@ -40,7 +40,8 @@
         {% endfor %}
         <h5 class="title">{{item.short_title}}</h5>
         <p class="description">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</p>
-        
+
+        <div class="separator"></div> 
         
         {% for custom_char in item.meta('custom_chars') %}
             <p class="characteristic">

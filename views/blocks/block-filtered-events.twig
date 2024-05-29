@@ -38,7 +38,7 @@
         <h4 class="event-date">{{item.start_date|date("d/m/y")}}</h4>
         <p class="description">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</p>
         
-        
+        <div class="separator"></div>  
         {% for custom_char in item.meta('custom_chars') %}
             <p class="characteristic">
                 {% if custom_char.picto %}

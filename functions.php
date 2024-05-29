@@ -178,7 +178,15 @@ function get_formations()
         'post_type' => 'formations',
         'posts_per_page' => -1,
         'lang' =>  pll_current_language('slug'),
+        'meta_query' => array(
+            array(
+                'key' => 'limit_date',
+                'compare' => '<=',
+                'value' => $today,
+            ),
+        ),
     );
+    
     $context['formations'] = \Timber::get_posts($args);
     \Timber::render('blocks/block-filtered-formations.twig', $context);
 
@@ -194,6 +202,13 @@ function get_events()
         'post_type' => 'events',
         'posts_per_page' => -1,
         'lang' =>  pll_current_language('slug'),
+        'meta_query' => array(
+            array(
+                'key' => 'limit_date',
+                'compare' => '<=',
+                'value' => $today,
+            ),
+        ), 
     );
     $context['events'] = \Timber::get_posts($args);
     \Timber::render('blocks/block-filtered-events.twig', $context);
@@ -221,6 +236,13 @@ function get_formations_filter()
         'post_type' => 'formations',
         'posts_per_page' => 12,
         'paged' => $paged,
+        'meta_query' => array(
+            array(
+                'key' => 'limit_date',
+                'compare' => '<=',
+                'value' => $today,
+            ),
+        ),
     );
     // formations filter values
     
@@ -319,6 +341,13 @@ function get_events_filter()
         'post_type' => 'events',
         'posts_per_page' => 12,
         'paged' => $paged,
+        'meta_query' => array(
+            array(
+                'key' => 'limit_date',
+                'compare' => '<=',
+                'value' => $today,
+            ),
+        ),
 
     );
     if ($distant) {

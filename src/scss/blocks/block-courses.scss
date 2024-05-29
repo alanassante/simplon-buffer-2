@@ -85,17 +85,19 @@ section.block-courses {
           position: relative;
           display: flex;
           align-items: center;
-          &::before {
-            content: "";
-            width: 45px;
-            height: 45px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 30px 30px;
-            background-image: var(--picto);
-            margin-right: 15px;
-            border-radius: 5px;
-            background-color: white;
+          &.picto {
+            &::before {
+              content: "";
+              width: 45px;
+              height: 45px;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 30px 30px;
+              background-image: var(--picto);
+              margin-right: 15px;
+              border-radius: 5px;
+              background-color: white;
+            }
           }
         }
         .cta {

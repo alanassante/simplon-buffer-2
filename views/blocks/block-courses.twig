@@ -51,7 +51,7 @@
                     <div class="line" style="{{course_color}};">
     
                         <div class="main-category" style="--picto:url({{term.meta('picto',item.target_category)}});">
-                            <h4 class="cat-title">
+                            <h4 class="cat-title {% if term.meta('picto',item.target_category) %}picto{% endif %}">
                                 {{term.meta('name',item.target_category)}}
                             </h4>
                             {% if item.button.url %}
@@ -84,19 +84,19 @@
                                                     {%  set card_picture = formations_default_picture %}
                                                 {% endif %}
                                             {% endif %}
-                                            
-                                            <picture class="thumbnail">
-                                                <source
-                                                type="image/webp"
-                                                srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
-                                                >
-                                                <source
-                                                type="image/jpeg"
-                                                srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
-                                                >
-                                                <img class="fit-cover" src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
-                                            </picture>
-                                            
+                                           {% if card_picture %} 
+                                                <picture class="thumbnail">
+                                                    <source
+                                                    type="image/webp"
+                                                    srcset="{{ Image(card_picture).src|towebp }}, {{ Image(card_picture).src|retina(2)|towebp }} 2x"
+                                                    >
+                                                    <source
+                                                    type="image/jpeg"
+                                                    srcset="{{ Image(card_picture).src|tojpg }}, {{ Image(card_picture).src|retina(2)|tojpg }} 2x"
+                                                    >
+                                                    <img class="fit-cover" src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
+                                                </picture>
+                                            {% endif %}
                                         </p>
                                             
                                         
