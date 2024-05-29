@@ -17,7 +17,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <a href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="card" style="{{color}};">
+    <a  href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="card" style="{{color}};">
         {% if item.thumbnail %}
             {%  set card_picture = item.thumbnail %}
         {% else %}

@@ -4,6 +4,7 @@ $timber = new \Timber\Timber();
 $context['ajax_url'] = admin_url('admin-ajax.php');
 $context['site_url'] = home_url(add_query_arg(array(), $wp->request));
 
+
 function seopress_theme_slug_setup()
 {
     add_theme_support('title-tag');
@@ -173,7 +174,7 @@ add_action('wp_ajax_get_formations', 'get_formations');
 function get_formations()
 {
     $context = Timber::get_context();
-
+    $today = date("Ymd");
     $args = array(
         'post_type' => 'formations',
         'posts_per_page' => -1,
@@ -181,7 +182,7 @@ function get_formations()
         'meta_query' => array(
             array(
                 'key' => 'limit_date',
-                'compare' => '<=',
+                'compare' => '>=',
                 'value' => $today,
             ),
         ),
@@ -197,7 +198,7 @@ add_action('wp_ajax_get_events', 'get_events');
 function get_events()
 {
     $context = Timber::get_context();
-
+    $today = date("Ymd");
     $args = array(
         'post_type' => 'events',
         'posts_per_page' => -1,
@@ -205,7 +206,7 @@ function get_events()
         'meta_query' => array(
             array(
                 'key' => 'limit_date',
-                'compare' => '<=',
+                'compare' => '>=',
                 'value' => $today,
             ),
         ), 
@@ -222,7 +223,7 @@ function get_formations_filter()
 {
     
     $context = Timber::get_context();
-
+    $today = date("Ymd");
     // formations filter values
     $formations = $_POST['linked_formations'];
     $levels = $_POST['levels'];
@@ -239,7 +240,7 @@ function get_formations_filter()
         'meta_query' => array(
             array(
                 'key' => 'limit_date',
-                'compare' => '<=',
+                'compare' => '>=',
                 'value' => $today,
             ),
         ),
@@ -330,7 +331,7 @@ add_action('wp_ajax_get_events_filter', 'get_events_filter');
 function get_events_filter()
 {
     $context = Timber::get_context();
-
+    $today = date("Ymd");
     $months = $_POST['months'];
     $countries = $_POST['countries'];
     $regions = $_POST['regions'];
@@ -344,7 +345,7 @@ function get_events_filter()
         'meta_query' => array(
             array(
                 'key' => 'limit_date',
-                'compare' => '<=',
+                'compare' => '>=',
                 'value' => $today,
             ),
         ),

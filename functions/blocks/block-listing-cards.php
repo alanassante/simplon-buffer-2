@@ -40,11 +40,18 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
     $region = get_field("region");
     $formation = get_field("formation");
 
-   
+    $today = date("Ymd");
     $args = array(
         'post_type' => $postType,
         'posts_per_page' => 12,
         'paged' => $paged,
+        'meta_query' => array(
+            array(
+                'key' => 'limit_date',
+                'compare' => '>=',
+                'value' => $today,
+            ),
+        ),
     );
 
     // Query Articles

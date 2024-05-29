@@ -178,7 +178,7 @@
                     {% endfor %}
                 {% endif %}
 
-                <a href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class=" {% if fields.listing_type == "post" %}post{% else %}card{% endif %}" style="{{color}};">
+                <a data-test="{{item.limit_date}}"  href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class=" {% if fields.listing_type == "post" %}post{% else %}card{% endif %}" style="{{color}};">
                     {% if item.thumbnail %}
                         {%  set card_picture = item.thumbnail %}
                     {% else %}
