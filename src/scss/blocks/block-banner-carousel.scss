@@ -64,15 +64,15 @@ section.block-banner-carousel {
       max-width: 1125px;
       overflow: hidden;
       height: fit-content;
+      transition: height 0.3s ease-in-out;
       .swiper-wrapper {
         .swiper-slide {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 30px;
-          transition: opacity 0.3s ease-in-out;
+          transition: opacity 0.3s ease-in-out height 0.3s ease-in-out;
           opacity: 0;
-          height: fit-content !important;
           &-active {
             opacity: 1;
           }

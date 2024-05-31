@@ -25,7 +25,7 @@
                     {% if card.panels|length > 0 %}
                         <div class="wrapper-panels">
                             {% for panel in card.panels %}
-                                <a class="panel">
+                                <a href="{{panel.link.url}}" class="panel">
                                     <div class="wrapper-img">
                                         {% if panel.picture %}
                                             <picture class="picture">
@@ -67,7 +67,7 @@
         <div class="wrapper-bottom">
             {% if fields.text %}<h3 class="text" >{{fields.text}}</h3>{% endif %}
             {% if fields.button.url %}
-            <a href="{{fields.button.url}}" class="cta primary {% if fields.dark %}white{% endif %}">{{fields.button.title}}</a>
+                <a href="{{fields.button.url}}" class="cta primary {% if fields.dark %}white{% endif %}">{{fields.button.title}}</a>
             {% endif %}
         </div>
     </div>  

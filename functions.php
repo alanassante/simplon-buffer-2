@@ -709,36 +709,36 @@ array(
     );
     register_taxonomy(
         'rythms',       // SLUG OF TAX
-'formations',      // POST TYPE TO ATTACH
-    array(
-        'hierarchical' => true,
-        'label' => 'Rythmes',
-        'singular_label' => 'Rythme',
-        'show_ui'               => true,
-        'show_in_rest'          => true,
-        'query_var' => true,
-        'rewrite' => array(
-            'slug' => 'rythms',
-            'with_front' => false
+        'formations',      // POST TYPE TO ATTACH
+        array(
+            'hierarchical' => true,
+            'label' => 'Rythmes',
+            'singular_label' => 'Rythme',
+            'show_ui'               => true,
+            'show_in_rest'          => true,
+            'query_var' => true,
+            'rewrite' => array(
+                'slug' => 'rythms',
+                'with_front' => false
+            )
         )
-    )
-);
-register_taxonomy(
-    'distant',       // SLUG OF TAX
-    array( 'events', 'formations' ),      // POST TYPE TO ATTACH
-    array(
-        'hierarchical' => true,
-        'label' => 'Distanciel',
-        'singular_label' => 'Distanciel',
-        'show_ui'               => true,
-        'show_in_rest'          => true,
-        'query_var' => true,
-        'rewrite' => array(
-            'slug' => 'distant',
-            'with_front' => false
+    );
+    register_taxonomy(
+        'distant',       // SLUG OF TAX
+        array( 'events', 'formations' ),      // POST TYPE TO ATTACH
+        array(
+            'hierarchical' => true,
+            'label' => 'Distanciel',
+            'singular_label' => 'Distanciel',
+            'show_ui'               => true,
+            'show_in_rest'          => true,
+            'query_var' => true,
+            'rewrite' => array(
+                'slug' => 'distant',
+                'with_front' => false
+            )
         )
-    )
-);
+    );
 
   
   

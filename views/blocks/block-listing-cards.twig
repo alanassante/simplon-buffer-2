@@ -144,6 +144,7 @@
         <div class="listing">
             
             {% for item in listPosts %}
+           
                 {% set color ='--color: ' %}
                 {% if item.type == "formations" %}
                     {% for tag in item.terms('domains') %}
@@ -189,6 +190,25 @@
                         {% elseif fields.listing_type == "post" %}
                             {%  set card_picture = posts_default_picture %}
                         {% endif %}
+                    {% endif %}
+                    {% set distanciel = false %}
+                    {% set alternance = false %}
+                    {% for term in item.terms('distant') %}
+                        {% if term|lower == "distanciel" %}
+                            {% set distanciel = true %} 
+                        {% endif %}
+                    {% endfor %} 
+                    {% for term in item.terms('rythms') %}
+                        {% if term|lower == "alternance" %}
+                            {% set alternance = true %} 
+                        {% endif %}
+                    {% endfor %} 
+                    {% if distanciel and alternance %}
+                        <p class="additional-tag">DISTANCIEL & ALTERNANCE</p>
+                    {% elseif distanciel %}
+                        <p class="additional-tag">DISTANCIEL</p>
+                    {% elseif alternance %}
+                        <p class="additional-tag">ALTERNANCE</p>
                     {% endif %}
                     <picture class="picture">
                         <source

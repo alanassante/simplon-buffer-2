@@ -8,6 +8,7 @@
   background-color: rgba(var(--color), 0.05);
   padding: 0px 20px 20px 20px;
   text-decoration: none;
+  position: relative;
   &:hover {
     .picture {
       img {
@@ -17,6 +18,20 @@
     .post-title {
       text-decoration: underline;
     }
+  }
+  .additional-tag {
+    z-index: 1;
+    color: white;
+    padding: 0 10px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background-color: black;
+    //styleName: Paragraph/label;
+    font-family: $font1;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25.5px;
   }
   .picture {
     width: calc(100% + 40px);
