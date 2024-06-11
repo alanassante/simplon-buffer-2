@@ -590,34 +590,7 @@ function codex_custom_init()
         )
     );
   }
-// landing
-{
-    register_post_type(
-        'landing-pages',
-        array(
-            'label'                 => __('Formations old'),
-            'singular_label'        => __('Formation old'),
-            'add_new_item'          => __('Ajouter une landing page'),
-            'edit_item'             => __('Modifier une landing page'),
-            'new_item'              => __('Nouvel landing page'),
-            'view_item'             => __("Voir la landing page"),
-            'search_items'          => __('Rechercher une landing page'),
-            'not_found'             => __('Aucune landing page trouvée'),
-            'not_found_in_trash'    => __('Aucune landing page trouvé'),
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_rest'          => true,
-            'capability_type'       => 'post',
-            'has_archive'           => true,
-            'hierarchical'          => true,
-            'menu_icon'             => 'dashicons-media-document',
-            'supports'              => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'),
-            'rewrite'               => array('slug' => 'landing-pages', 'with_front' => false),
-            'template_lock'         => 'insert',
-            
-        )
-    );
-  }
+
 add_action('init', 'codex_custom_init');
 
 //taxonomies
