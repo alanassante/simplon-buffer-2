@@ -231,7 +231,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "formations"
+                "value": "sessions"
             }
         ]
     ],
@@ -244,5 +244,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1716987353
+    "modified": 1718112438
 }

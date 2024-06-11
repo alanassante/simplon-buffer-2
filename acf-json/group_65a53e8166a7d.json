@@ -34,7 +34,7 @@
                 "id": ""
             },
             "choices": {
-                "formations": "Sessions",
+                "sessions": "Sessions",
                 "events": "Événements",
                 "post": "Articles de blog"
             },
@@ -493,5 +493,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1716390006
+    "modified": 1718114777
 }

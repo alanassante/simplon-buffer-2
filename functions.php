@@ -695,7 +695,7 @@ array(
     );
     register_taxonomy(
         'levels',       // SLUG OF TAX
-        array(  'sessions' ),     // POST TYPE TO ATTACH
+        array( 'sessions' ),     // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Niveaux',
@@ -711,7 +711,7 @@ array(
     );
     register_taxonomy(
         'rythms',       // SLUG OF TAX
-        array(  'sessions' ),       // POST TYPE TO ATTACH
+        array( 'sessions' ),       // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Rythmes',
