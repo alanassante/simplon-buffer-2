@@ -533,34 +533,7 @@ function codex_custom_init()
         )
     );
 }
-// formations
-{
-    register_post_type(
-        'formations',
-        array(
-            'label'                 => __('Sessions old'),
-            'singular_label'        => __('Session old'),
-            'add_new_item'          => __('Ajouter une session'),
-            'edit_item'             => __('Modifier une session'),
-            'new_item'              => __('Nouvelle session'),
-            'view_item'             => __('Voir la session'),
-            'search_items'          => __('Rechercher une session'),
-            'not_found'             => __('Aucune session trouvée'),
-            'not_found_in_trash'    => __('Aucune session trouvé'),
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_rest'          => true,
-            'capability_type'       => 'post',
-            'has_archive'           => true,
-            'hierarchical'          => true,
-            'menu_icon'             => 'dashicons-welcome-learn-more',
-            'supports'              => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'),
-            'rewrite'               => array('slug' => 'formations', 'with_front' => false),
-            'template_lock'         => 'insert',
-            
-        )
-    );
-}
+
 // events
 {
   register_post_type(
@@ -589,13 +562,41 @@ function codex_custom_init()
       )
   );
 }
+// Formation
+{
+    register_post_type(
+        'formations',
+        array(
+            'label'                 => __('Formations'),
+            'singular_label'        => __('Formation'),
+            'add_new_item'          => __('Ajouter une formation'),
+            'edit_item'             => __('Modifier une formation'),
+            'new_item'              => __('Nouvelle formation'),
+            'view_item'             => __("Voir la formation"),
+            'search_items'          => __('Rechercher une formation'),
+            'not_found'             => __('Aucune formation trouvée'),
+            'not_found_in_trash'    => __('Aucune formation trouvé'),
+            'public'                => true,
+            'show_ui'               => true,
+            'show_in_rest'          => true,
+            'capability_type'       => 'post',
+            'has_archive'           => true,
+            'hierarchical'          => true,
+            'menu_icon'             => 'dashicons-media-document',
+            'supports'              => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'),
+            'rewrite'               => array('slug' => 'formations', 'with_front' => false),
+            'template_lock'         => 'insert',
+            
+        )
+    );
+  }
 // landing
 {
     register_post_type(
         'landing-pages',
         array(
-            'label'                 => __('Landing pages'),
-            'singular_label'        => __('Landing page'),
+            'label'                 => __('Formations old'),
+            'singular_label'        => __('Formation old'),
             'add_new_item'          => __('Ajouter une landing page'),
             'edit_item'             => __('Modifier une landing page'),
             'new_item'              => __('Nouvel landing page'),
@@ -656,7 +657,7 @@ register_taxonomy(
 );
 register_taxonomy(
     'regions',       // SLUG OF TAX
-    array( 'events', 'formations', 'sessions' ),      // POST TYPE TO ATTACH
+    array( 'events', 'sessions' ),      // POST TYPE TO ATTACH
     array(
         'hierarchical' => true,
         'label' => 'Regions',
@@ -689,7 +690,7 @@ array(
 
 register_taxonomy(
 'domains',       // SLUG OF TAX
-array( 'formations', 'sessions' ),      // POST TYPE TO ATTACH
+array( 'sessions' ),      // POST TYPE TO ATTACH
 array(
     'hierarchical' => true,
     'label' => 'Domaines',
@@ -705,7 +706,7 @@ array(
 );
     register_taxonomy(
         'linked_formations',       // SLUG OF TAX
-        array( 'formations', 'sessions' ),       // POST TYPE TO ATTACH
+        array( 'sessions' ),       // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Formations associées',
@@ -721,7 +722,7 @@ array(
     );
     register_taxonomy(
         'levels',       // SLUG OF TAX
-        array( 'formations', 'sessions' ),     // POST TYPE TO ATTACH
+        array(  'sessions' ),     // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Niveaux',
@@ -737,7 +738,7 @@ array(
     );
     register_taxonomy(
         'rythms',       // SLUG OF TAX
-        array( 'formations', 'sessions' ),       // POST TYPE TO ATTACH
+        array(  'sessions' ),       // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Rythmes',
@@ -753,7 +754,7 @@ array(
     );
     register_taxonomy(
         'distant',       // SLUG OF TAX
-        array( 'events', 'formations' ),      // POST TYPE TO ATTACH
+        array( 'events', 'sessions' ),      // POST TYPE TO ATTACH
         array(
             'hierarchical' => true,
             'label' => 'Distanciel',
