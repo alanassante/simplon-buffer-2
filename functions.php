@@ -527,7 +527,7 @@ function codex_custom_init()
             'hierarchical'          => true,
             'menu_icon'             => 'dashicons-welcome-learn-more',
             'supports'              => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'),
-            'rewrite'               => array('slug' => 'formations', 'with_front' => false),
+            'rewrite'               => array('slug' => 'sessions', 'with_front' => false),
             'template_lock'         => 'insert',
             
         )
