@@ -1,11 +1,10 @@
 {#
 /**
- * Block Name: formations filtrés
+ * Block Name: sessions filtrés
  *
  */
 #}
-
-{% for item in curated_formations %}
+{% for item in curated_sessions %}
     {% set color ='--color: ' %}
     {% for tag in item.terms('domains') %}
         {% for value in tag.domain_color %}
@@ -21,7 +20,7 @@
         {% if item.thumbnail %}
             {%  set card_picture = item.thumbnail %}
         {% else %}
-            {%  set card_picture = formations_default_picture %}
+            {%  set card_picture = sessions_default_picture %}
         {% endif %}
         {% set distanciel = false %}
         {% set alternance = false %}

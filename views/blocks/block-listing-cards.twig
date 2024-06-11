@@ -146,7 +146,7 @@
             {% for item in listPosts %}
            
                 {% set color ='--color: ' %}
-                {% if item.type == "formations" %}
+                {% if item.type == "sessions" %}
                     {% for tag in item.terms('domains') %}
                         {% for value in tag.domain_color %}
                             {% if loop.index < 4 %}
@@ -185,8 +185,8 @@
                     {% else %}
                         {% if fields.listing_type == "events" %}
                             {%  set card_picture = events_default_picture %}
-                        {% elseif fields.listing_type == "formations" %}
-                            {%  set card_picture = formations_default_picture %}
+                        {% elseif fields.listing_type == "sessions" %}
+                            {%  set card_picture = sessions_default_picture %}
                         {% elseif fields.listing_type == "post" %}
                             {%  set card_picture = posts_default_picture %}
                         {% endif %}
@@ -221,7 +221,7 @@
                         >
                         <img src="{{ Image(card_picture).src }}" width="{{ Image(card_picture).width }}" height="{{ Image(card_picture).height }}" loading="lazy" alt="{{ Image(card_picture).alt }}" />
                     </picture>
-                    {% if fields.listing_type == "formations" %}
+                    {% if fields.listing_type == "sessions" %}
                         {% for tag in item.terms('domains') %}
                             <p class="tag">{{tag}}</p>
                         {% endfor %}
@@ -231,7 +231,7 @@
                         {% endfor %}
                     {% endif %}
 
-                    <h4 class="title">{% if fields.listing_type == "formations" %}{{item.short_title}}{% else %}{{item.title}}{% endif %}</h4>
+                    <h4 class="title">{% if fields.listing_type == "sessions" %}{{item.short_title}}{% else %}{{item.title}}{% endif %}</h4>
                     {% if item.type == "events" %}
                         <h4 class="event-date">{{item.start_date|date("d/m/y")}}</h4>
                     {% endif %}
@@ -257,7 +257,7 @@
                     {% endfor %}
                     
                     <p class="cta secondary">
-                        <span>{% if fields.listing_type == "events" %}{{ item.discover_event_label }}{% elseif fields.listing_type == "formations" %}{{ item.discover_training_label }}{% elseif fields.listing_type == "post" %}{{ item.discover_post_label }}{% endif %}</span>
+                        <span>{% if fields.listing_type == "events" %}{{ item.discover_event_label }}{% elseif fields.listing_type == "sessions" %}{{ item.discover_training_label }}{% elseif fields.listing_type == "post" %}{{ item.discover_post_label }}{% endif %}</span>
                     </p>
                 </a>
 

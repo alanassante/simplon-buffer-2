@@ -2,7 +2,7 @@
 $context = Timber::context();
 $context['post'] = new Timber\Post();
 $context['search_page_title'] = get_field('search_page_title', 'options');
-$context['formations_default_picture'] = get_field('formations_default_picture', 'options');
+$context['sessions_default_picture'] = get_field('sessions_default_picture', 'options');
 $context['events_default_picture'] = get_field('events_default_picture', 'options');
 $context['posts_default_picture'] = get_field('posts_default_picture', 'options');
 $context['is_preview'] = $is_preview;

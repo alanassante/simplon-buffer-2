@@ -6,7 +6,7 @@ function block_courses_render_callback( $block, $content = '', $is_preview = fal
     $context['fields'] = get_fields();
 
     //Globaux
-    $context['formations_default_picture'] = get_field('formations_default_picture', 'options');
+    $context['sessions_default_picture'] = get_field('sessions_default_picture', 'options');
     $context['events_default_picture'] = get_field('events_default_picture', 'options');
     
     $context['is_preview'] = $is_preview;

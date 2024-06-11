@@ -169,9 +169,9 @@ function add_to_context($context)
 // ALLOW SVG
  
 
-add_action('wp_ajax_nopriv_get_formations', 'get_formations');
-add_action('wp_ajax_get_formations', 'get_formations');
-function get_formations()
+add_action('wp_ajax_nopriv_get_sessions', 'get_sessions');
+add_action('wp_ajax_get_sessions', 'get_sessions');
+function get_sessions()
 {
     $context = Timber::get_context();
     $today = date("Ymd");
@@ -189,7 +189,7 @@ function get_formations()
     );
     
     $context['formations'] = \Timber::get_posts($args);
-    \Timber::render('blocks/block-filtered-formations.twig', $context);
+    \Timber::render('blocks/block-filtered-sessions.twig', $context);
 
     die();
 }
@@ -217,9 +217,9 @@ function get_events()
     die();
 }
 
-add_action('wp_ajax_nopriv_get_formations_filter', 'get_formations_filter');
-add_action('wp_ajax_get_formations_filter', 'get_formations_filter');
-function get_formations_filter()
+add_action('wp_ajax_nopriv_get_sessions_filter', 'get_sessions_filter');
+add_action('wp_ajax_get_sessions_filter', 'get_sessions_filter');
+function get_sessions_filter()
 {
     
     $context = Timber::get_context();
@@ -234,7 +234,7 @@ function get_formations_filter()
     $distant = $_POST['distant'];
     
     $args = array(
-        'post_type' => 'formations',
+        'post_type' => 'sessions',
         'posts_per_page' => 12,
         'paged' => $paged,
         'meta_query' => array(
@@ -320,9 +320,9 @@ function get_formations_filter()
           ),
       ];
     };
-    $context['formations_default_picture'] = get_field('formations_default_picture', 'options');
-    $context['curated_formations'] = \Timber::get_posts($args);
-    \Timber::render('blocks/block-filtered-formations.twig', $context);
+    $context['sessions_default_picture'] = get_field('sessions_default_picture', 'options');
+    $context['curated_sessions'] = \Timber::get_posts($args);
+    \Timber::render('blocks/block-filtered-sessions.twig', $context);
     die();
 }
 

@@ -7,7 +7,7 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
     $context['ajax_url'] = admin_url('admin-ajax.php');
 
     //Globaux
-    $context['formations_default_picture'] = get_field('formations_default_picture', 'options');
+    $context['sessions_default_picture'] = get_field('sessions_default_picture', 'options');
     $context['events_default_picture'] = get_field('events_default_picture', 'options');
     $context['posts_default_picture'] = get_field('posts_default_picture', 'options');
     
