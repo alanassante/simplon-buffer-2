@@ -98,8 +98,6 @@
                                                 </picture>
                                             {% endif %}
                                         </p>
-                                            
-                                        
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -112,26 +110,25 @@
             </div>
         </div>
         {% if fields.additional_line.title %}
-        {% set add_color = '--additional-color:' %}
-        {% for value in fields.additional_line.bg_color %}
-        
-            {% if loop.index < 4 %}
-                {% set add_color = add_color ~ value %}
-            {% endif %}
-            {% if loop.index < 3 %}
-                {% set add_color = add_color ~ ',' %}   
-            {% endif %}
-        {% endfor %}
-        <div class="additional-line line" style="{{add_color}};">
-            
-            <p class="big">{{ fields.additional_line.title }}</p>
-            {% if fields.additional_line.button.url %}
-                <a href="{{ fields.additional_line.button.url }}" {% if fields.additional_line.button.target %}target="{{ fields.additional_line.button.target }}"{% endif %} {% if fields.additional_line.button.target %}rel="noopener"{% endif %} class="cta secondary black">
-                    <span>{{ fields.additional_line.button.title }}</span>
-                </a>
-            {% endif %}
-            
-        </div>
+            {% set add_color = '--additional-color:' %}
+            {% for value in fields.additional_line.bg_color %}
+                {% if loop.index < 4 %}
+                    {% set add_color = add_color ~ value %}
+                {% endif %}
+                {% if loop.index < 3 %}
+                    {% set add_color = add_color ~ ',' %}   
+                {% endif %}
+            {% endfor %}
+            <div class="additional-line line" style="{{add_color}};">
+                
+                <p class="big">{{ fields.additional_line.title }}</p>
+                {% if fields.additional_line.button.url %}
+                    <a href="{{ fields.additional_line.button.url }}" {% if fields.additional_line.button.target %}target="{{ fields.additional_line.button.target }}"{% endif %} {% if fields.additional_line.button.target %}rel="noopener"{% endif %} class="cta secondary black">
+                        <span>{{ fields.additional_line.button.title }}</span>
+                    </a>
+                {% endif %}
+                
+            </div>
         {% endif %}
     </div>
 </section>

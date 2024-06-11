@@ -1,0 +1,101 @@
+{#
+/**
+ * Block Name: Parcours de formation
+ *
+ */
+#}
+<section class="block-courses-v2 {{ block.className }}{% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}">
+    <div class="container">
+        <h2 class="title">{{fields.title}}</h2>
+        <div class="table" style="--total:{{fields.title_line|length}};">
+            <div class="top">
+                <div class="empty"></div>
+                <div class="values">
+                {% for item in fields.title_line %}
+                    <div class="col">
+                        <h4 class="col-label">{{item.title}}</h4>
+                        <p class="col-sub-label">{{item.description}}</p>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+                    
+                    
+
+            <div class="body">
+                {% for line in fields.lines %}
+                    {% set course_color ='--course-color: ' %}
+                    {% for value in line.line_color %}
+                        {% if loop.index < 4 %}
+                            {% set course_color = course_color ~ value %}
+                        {% endif %}
+                        {% if loop.index < 3 %}
+                            {% set course_color = course_color ~ ',' %}   
+                        {% endif %}
+                    {% endfor %}
+                    <div class="line" style="{{course_color}};">
+                        <div class="main-category" style="--picto:url({{Image(line.line_head_picto).src}});">
+                            <h4 class="cat-title">
+                                {{line.line_head_title}}
+                            </h4>
+                            {% if line.button.url %}
+                                <a href="{{ line.button.url }}" {% if line.button.target %}target="{{ line.button.target }}"{% endif %} {% if line.button.target %}rel="noopener"{% endif %} class="cta secondary white">
+                                    <span>{{ line.button.title }}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="values">
+                            {% for item in fields.title_line %}
+                            <div class="cell">
+                                {% for sub_item in line.elements_to_display %}
+                                    {% if sub_item.element_order == loop.parent.loop.index %}
+                                        <p class="post-title">
+                                            <span>{{ sub_item.element_link.title }}</span>
+                                            {% if sub_item.element_image %}
+                                                <picture class="thumbnail">
+                                                    <source
+                                                    type="image/webp"
+                                                    srcset="{{ Image(sub_item.element_image).src|towebp }}, {{ Image(sub_item.element_image).src|retina(2)|towebp }} 2x"
+                                                    >
+                                                    <source
+                                                    type="image/jpeg"
+                                                    srcset="{{ Image(sub_item.element_image).src|tojpg }}, {{ Image(sub_item.element_image).src|retina(2)|tojpg }} 2x"
+                                                    >
+                                                    <img class="fit-cover" src="{{ Image(sub_item.element_image).src }}" width="{{ Image(sub_item.element_image).width }}" height="{{ Image(sub_item.element_image).height }}" loading="lazy" alt="{{ Image(sub_item.element_image).alt }}" />
+                                                </picture>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+        {% if fields.additional_line.title %}
+            {% set add_color = '--additional-color:' %}
+            {% for value in fields.additional_line.bg_color %}
+                {% if loop.index < 4 %}
+                    {% set add_color = add_color ~ value %}
+                {% endif %}
+                {% if loop.index < 3 %}
+                    {% set add_color = add_color ~ ',' %}   
+                {% endif %}
+            {% endfor %}
+            <div class="additional-line line" style="{{add_color}};">
+                
+                <p class="big">{{ fields.additional_line.title }}</p>
+                {% if fields.additional_line.button.url %}
+                    <a href="{{ fields.additional_line.button.url }}" {% if fields.additional_line.button.target %}target="{{ fields.additional_line.button.target }}"{% endif %} {% if fields.additional_line.button.target %}rel="noopener"{% endif %} class="cta secondary black">
+                        <span>{{ fields.additional_line.button.title }}</span>
+                    </a>
+                {% endif %}
+                
+            </div>
+        {% endif %}
+    </div>
+</section>

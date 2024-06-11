@@ -69,6 +69,17 @@ function my_acf_init()
     );
     acf_register_block(
         array(
+            'name'            => 'courses-v2',
+            'title'           => __('Bloc parcours de formation v2', 'your-text-domain'),
+            'render_callback' => 'block_courses_v2_render_callback',
+            'category'        => 'formatting',
+            'icon'            => 'admin-comments',
+            'mode'            => 'auto',
+            'keywords'        => array('example'),
+        ),
+    );
+    acf_register_block(
+        array(
             'name'            => 'hero-form',
             'title'           => __('Bloc hero formulaire', 'your-text-domain'),
             'render_callback' => 'block_hero_form_render_callback',
