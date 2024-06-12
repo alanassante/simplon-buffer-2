@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       const reset = activeFiltersTarget.querySelector(".reset");
       const ajaxurl = form.dataset.action;
       let data = {
-        action: section.classList.contains("formations")
-          ? "get_formations_filter"
+        action: section.classList.contains("sessions")
+          ? "get_sessions_filter"
           : "get_events_filter",
         // Formation
         linked_formations: [],
@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           filter.remove();
         });
         let resetData = {
-          action: section.classList.contains("formations")
-            ? "get_formations_filter"
+          action: section.classList.contains("sessions")
+            ? "get_sessions_filter"
             : "get_events_filter",
           // Formation
           linked_formations: [],

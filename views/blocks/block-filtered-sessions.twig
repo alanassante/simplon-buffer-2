@@ -16,7 +16,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
-    <a  href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="card" style="{{color}};">
+    <div {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="card" style="{{color}};">
         {% if item.thumbnail %}
             {%  set card_picture = item.thumbnail %}
         {% else %}
@@ -57,7 +57,17 @@
         {% for tag in item.terms('domains') %}
             <p class="tag">{{tag}}</p>
         {% endfor %}
-        <h5 class="title">{{item.short_title}}</h5>
+        <h4 class="title">
+            {% if item.alternative_link.url ==  current_url %}
+                <span>
+                    {{item.short_title}} 
+                </span>
+            {% else %}
+                <a href="{{item.alternative_link.url}}">
+                    {{item.short_title}}
+                </a>
+            {% endif %}
+        </h4>
         <p class="description">{% if item.excerpt %}{{ item.excerpt }}{% else %}{{item.description}}{% endif %}</p>
 
         <div class="separator"></div> 
@@ -81,9 +91,9 @@
             </p>
         {% endfor %}
         {% if item.link %}
-            <p {% if item.target %}target="{{ item.target }}"{% endif %} {% if item.target %}rel="noopener"{% endif %} class="cta secondary">
-                <span>{{ item.discover_training_label }}</span>
-            </p>
+            <a href="{{ item.link }}" class="cta secondary">
+                <span>{% if fields.listing_type == "events" %}{{ item.discover_event_label }}{% elseif fields.listing_type == "sessions" %}{{ item.discover_training_label }}{% elseif fields.listing_type == "post" %}{{ item.discover_post_label }}{% endif %}</span>
+            </a>
         {% endif %}
     </div>
 {% endfor %}

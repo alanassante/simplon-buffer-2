@@ -114,25 +114,25 @@
                     </div>
                 {% endif %}
             {% endif %}
-            {% if distant|length > 1 %}
+                {% if distant|length > 1 %}
+                        <div class="input-wrapper">
+                            <select data-type="distant" name="" id="" class="input">
+                                <option value="" selected disabled>Localisation</option>
+                                {% for option in distant %}
+                                    <option value="{{option.slug}}">{{option}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
+                {% if regions|length > 1 %}
                     <div class="input-wrapper">
-                        <select data-type="distant" name="" id="" class="input">
-                            <option value="" selected disabled>Localisation</option>
-                            {% for option in distant %}
+                        <select data-type="regions" name="" id="" class="input">
+                            <option value="" selected disabled>Région</option>
+                            {% for option in regions %}
                                 <option value="{{option.slug}}">{{option}}</option>
                             {% endfor %}
                         </select>
                     </div>
-                {% endif %}
-            {% if regions|length > 1 %}
-                <div class="input-wrapper">
-                    <select data-type="regions" name="" id="" class="input">
-                        <option value="" selected disabled>Région</option>
-                        {% for option in regions %}
-                            <option value="{{option.slug}}">{{option}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
             {% endif %}  
         </form>
         {% endif %}
@@ -144,7 +144,6 @@
         <div class="listing">
             
             {% for item in listPosts %}
-           
                 {% set color ='--color: ' %}
                 {% if item.type == "sessions" %}
                     {% for tag in item.terms('domains') %}
@@ -179,7 +178,7 @@
                     {% endfor %}
                 {% endif %}
 
-                <a data-test="{{item.limit_date}}"  href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% else %}{{ item.link }}{% endif %}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class=" {% if fields.listing_type == "post" %}post{% else %}card{% endif %}" style="{{color}};">
+                <div data-test="{{item.limit_date}}" {% if item.alternative_link.target %}target="{{ item.alternative_link.target }}"{% endif %} {% if item.alternative_link.target %}rel="noopener"{% endif %} data-type="{{item.type}}" class="{% if fields.listing_type == "post" %}post{% else %}card{% endif %}" style="{{color}};">
                     {% if item.thumbnail %}
                         {%  set card_picture = item.thumbnail %}
                     {% else %}
@@ -231,7 +230,17 @@
                         {% endfor %}
                     {% endif %}
 
-                    <h4 class="title">{% if fields.listing_type == "sessions" %}{{item.short_title}}{% else %}{{item.title}}{% endif %}</h4>
+                    <h4 class="title">
+                        {% if item.alternative_link.url ==  current_url %}
+                            <span>
+                                {% if fields.listing_type == "sessions" %}{{item.short_title}}{% else %}{{item.title}}{% endif %} 
+                            </span>
+                        {% else %}
+                            <a href="{% if item.alternative_link.url %}{{item.alternative_link.url}}{% endif %}">
+                                {% if fields.listing_type == "sessions" %}{{item.short_title}}{% else %}{{item.title}}{% endif %}
+                            </a>
+                        {% endif %}
+                    </h4>
                     {% if item.type == "events" %}
                         <h4 class="event-date">{{item.start_date|date("d/m/y")}}</h4>
                     {% endif %}
@@ -256,10 +265,10 @@
                         </p>
                     {% endfor %}
                     
-                    <p class="cta secondary">
+                    <a href="{{ item.link }}" class="cta secondary">
                         <span>{% if fields.listing_type == "events" %}{{ item.discover_event_label }}{% elseif fields.listing_type == "sessions" %}{{ item.discover_training_label }}{% elseif fields.listing_type == "post" %}{{ item.discover_post_label }}{% endif %}</span>
-                    </p>
-                </a>
+                    </a>
+                </div>
 
             {% endfor %}
         </div>

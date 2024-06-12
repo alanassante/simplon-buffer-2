@@ -176,7 +176,7 @@ function get_sessions()
     $context = Timber::get_context();
     $today = date("Ymd");
     $args = array(
-        'post_type' => 'formations',
+        'post_type' => 'sessions',
         'posts_per_page' => -1,
         'lang' =>  pll_current_language('slug'),
         'meta_query' => array(
@@ -188,7 +188,7 @@ function get_sessions()
         ),
     );
     
-    $context['formations'] = \Timber::get_posts($args);
+    $context['sessions'] = \Timber::get_posts($args);
     \Timber::render('blocks/block-filtered-sessions.twig', $context);
 
     die();
@@ -237,14 +237,17 @@ function get_sessions_filter()
         'post_type' => 'sessions',
         'posts_per_page' => 12,
         'paged' => $paged,
-        'meta_query' => array(
+    );
+    
+    if($postType != "post"){
+        $args['meta_query'][] = [
             array(
                 'key' => 'limit_date',
                 'compare' => '>=',
                 'value' => $today,
             ),
-        ),
-    );
+        ];   
+    }
     // formations filter values
     
     if($formations){

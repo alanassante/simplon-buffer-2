@@ -17,7 +17,7 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
     $context['rythms'] = \Timber::get_terms('rythms', array( 'hide_empty' => true, 'parent' => 0 ));
     $context['distant'] = \Timber::get_terms('distant', array( 'hide_empty' => true, 'parent' => 0 ));
     $context['linked_formations'] = \Timber::get_terms('linked_formations', array( 'hide_empty' => true, 'parent' => 0 )); 
-
+    
     // Events taxo for filters
     $context['event_types'] = \Timber::get_terms('event_types', array( 'hide_empty' => true, 'parent' => 0 ));
     $context['countries'] = \Timber::get_terms('countries', array( 'hide_empty' => true, 'parent' => 0 ));
@@ -29,6 +29,7 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
     // Regular tags
     $context['categories'] = \Timber::get_terms('category', array( 'hide_empty' => true, 'parent' => 0 )); 
 
+    $context['current_url'] = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $context['is_preview'] = $is_preview;
     
     global $paged;
@@ -45,14 +46,16 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
         'post_type' => $postType,
         'posts_per_page' => 12,
         'paged' => $paged,
-        'meta_query' => array(
+    );
+    if($postType != "post"){
+        $args['meta_query'][] = [
             array(
                 'key' => 'limit_date',
                 'compare' => '>=',
                 'value' => $today,
             ),
-        ),
-    );
+        ];   
+    }
 
     // Query Articles
     if($domain){   

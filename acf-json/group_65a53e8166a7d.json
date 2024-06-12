@@ -229,7 +229,7 @@
                             {
                                 "field": "field_65a799474538e",
                                 "operator": "==",
-                                "value": "formations"
+                                "value": "sessions"
                             }
                         ]
                     ],
@@ -257,7 +257,7 @@
                             {
                                 "field": "field_65a799474538e",
                                 "operator": "==",
-                                "value": "formations"
+                                "value": "sessions"
                             }
                         ]
                     ],
@@ -285,7 +285,7 @@
                             {
                                 "field": "field_65a799474538e",
                                 "operator": "==",
-                                "value": "formations"
+                                "value": "sessions"
                             }
                         ]
                     ],
@@ -493,5 +493,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718114777
+    "modified": 1718122006
 }
