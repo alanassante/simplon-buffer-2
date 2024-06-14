@@ -3,7 +3,7 @@
  * Block Name: Testimony
  */
 #}                   
-{% set random_id = random() %}
+{% set randomId = random() %}
 <section class="block-testimony {% if fields.style == "multi" %}multi{% else %}single{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
     <div class="container">
 

@@ -145,7 +145,9 @@ section.block-testimony {
         }
       }
       .swiper-wrapper {
+        height: fit-content !important;
         .swiper-slide {
+          height: fit-content !important;
           opacity: 0.3;
           transition: opacity 0.3s ease-in-out;
           &-active,
