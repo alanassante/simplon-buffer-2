@@ -18,7 +18,7 @@
                         type="image/jpeg"
                         srcset="{{ Image(item.picture).src|tojpg }}, {{ Image(item.picture).src|retina(2)|tojpg }} 2x"
                         >
-                        <img src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
+                        <img class="fit-cover" src="{{ Image(item.picture).src }}" width="{{ Image(item.picture).width }}" height="{{ Image(item.picture).height }}" loading="lazy" alt="{{ Image(item.picture).alt }}" />
                     </picture>
                 {% endfor %}
                 </div>
@@ -55,17 +55,7 @@
                 <div class="form-{{loop.index}} form {% if loop.index == "1" %}active{% endif %}">{{item.form}}</div>
                 {% endfor %}
             </div>
-            
-        
         </div>
-    
-                {# SVG mosaiques carrés #}
         <div class="tiles-pattern-wrapper tech-pattern-wrapper" ></div>  
-                
-        
-        
-        
-    </div>
-
-
+      </div>
 </section>

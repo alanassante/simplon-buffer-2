@@ -118,6 +118,7 @@ section.block-map {
     }
     .swiper-slide {
       max-width: 375px;
+      height: fit-content !important;
       padding: 15px;
       border-radius: 5px;
       background-color: rgba(var(--blue-light), 1);

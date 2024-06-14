@@ -24,10 +24,11 @@ section.block-hero-lp {
           }
         }
         .swiper-wrapper {
+          height: 150px !important;
           animation-timing-function: linear;
           .swiper-slide {
             width: 150px;
-            height: 150px;
+            height: 150px !important;
           }
         }
       }
@@ -45,6 +46,7 @@ section.block-hero-lp {
         width: 100px;
         height: 100px;
         margin-right: 20px;
+        overflow: hidden;
       }
     }
     div.right-bloc {
