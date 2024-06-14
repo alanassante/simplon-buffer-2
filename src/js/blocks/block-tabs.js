@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const swiperId = `#${section.querySelector(".tabs-swiper").id}`;
     const tabsSwiper = new Swiper(`${swiperId}`, {
       spaceBetween: 30,
+      autoHeight: true,
       direction: "horizontal",
       slidesPerView: 1,
-      autoHeight: true,
       navigation: {
         nextEl: navNext,
         prevEl: navPrev,
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       breakpoints: {
         1200: {
-          autoHeight: true,
+          autoHeight: false,
           slidesPerView: 1,
           centeredSlides: true,
           spaceBetween: 60,

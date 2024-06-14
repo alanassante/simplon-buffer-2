@@ -29,27 +29,30 @@
             <div class="swiper-wrapper">
                 {% for item in fields.tabs %}
                     <div class="swiper-slide">
-                        {% if Image(item.image).src %}
-                        <picture class="picture">
-                            <source
-                            type="image/webp"
-                            srcset="{{ Image(item.image).src|towebp }}, {{ Image(item.image).src|retina(2)|towebp }} 2x"
-                            >
-                            <source
-                            type="image/jpeg"
-                            srcset="{{ Image(item.image).src|tojpg }}, {{ Image(item.image).src|retina(2)|tojpg }} 2x"
-                            >
-                            <img src="{{ Image(item.image).src }}" width="{{ Image(item.image).width }}" height="{{ Image(item.image).height }}" loading="lazy" alt="{{ Image(item.image).alt }}" />
-                        </picture>
-                        {% endif %}
-                        <div class="text-content">
-                            {{item.text_content}}
-                            {% if item.button.url %}
-                            <a href="{{ item.button.url }}" {% if item.button.target %}target="{{ item.button.target }}"{% endif %} {% if item.button.target %}rel="noopener"{% endif %} class="cta secondary">
-                                {{ item.button.title }}
-                            </a>
-                        {% endif %}
+                        <div class="wrapper">
+                            {% if Image(item.image).src %}
+                            <picture class="picture">
+                                <source
+                                type="image/webp"
+                                srcset="{{ Image(item.image).src|towebp }}, {{ Image(item.image).src|retina(2)|towebp }} 2x"
+                                >
+                                <source
+                                type="image/jpeg"
+                                srcset="{{ Image(item.image).src|tojpg }}, {{ Image(item.image).src|retina(2)|tojpg }} 2x"
+                                >
+                                <img src="{{ Image(item.image).src }}" width="{{ Image(item.image).width }}" height="{{ Image(item.image).height }}" loading="lazy" alt="{{ Image(item.image).alt }}" />
+                            </picture>
+                            {% endif %}
+                            <div class="text-content">
+                                {{item.text_content}}
+                                {% if item.button.url %}
+                                <a href="{{ item.button.url }}" {% if item.button.target %}target="{{ item.button.target }}"{% endif %} {% if item.button.target %}rel="noopener"{% endif %} class="cta secondary">
+                                    {{ item.button.title }}
+                                </a>
+                                {% endif %}
+                            </div>
                         </div>
+                        
                     </div>
                 {% endfor %}
             </div>

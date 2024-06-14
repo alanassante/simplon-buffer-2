@@ -189,6 +189,10 @@ section.block-latest-article {
           width: 100%;
           flex-direction: column !important;
           margin: 0 auto;
+          &:nth-child(2),
+          &:nth-child(1) {
+            max-width: 375px;
+          }
           .wrapper {
             flex-direction: column-reverse;
             justify-content: space-between;
