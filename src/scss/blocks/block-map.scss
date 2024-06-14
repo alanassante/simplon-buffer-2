@@ -116,6 +116,9 @@ section.block-map {
       left: calc(calc(100vw - 1240px) / -2);
       // left: 50%;
     }
+    .swiper-wrapper {
+      height: fit-content !important;
+    }
     .swiper-slide {
       max-width: 375px;
       height: fit-content !important;
