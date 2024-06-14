@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
   modules.forEach((module) => {
     const navPrev = module.querySelector(".carousel-cards-nav-prev");
     const navNext = module.querySelector(".carousel-cards-nav-next");
-
-    const cardsSwiper = new Swiper(".swiper-cards", {
+    const swiperId = `#${module.querySelector(".swiper swiper-cards").id}`;
+    const cardsSwiper = new Swiper(`${swiperId}`, {
       autoHeight: true,
       spaceBetween: 10,
       slidesPerView: 1,

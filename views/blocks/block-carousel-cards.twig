@@ -3,6 +3,8 @@
  * Block Name: Carousel Cards
  */
 #}
+{% set randomId = random() %}
+
 <section class="block-carousel-cards{{ block.className }} {% if fields.dark %}{% else %}black{% endif %} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
     <div class="container{% if fields.reversed %}reversed{% endif %}">
         <div class="wrapper-top">
@@ -14,7 +16,7 @@
                 <div class="carousel-cards-nav-next next"></div>
             </div>
         </div>
-        <div class="swiper swiper-cards">
+        <div id="swiper-{{ randomId }}"  class="swiper swiper-cards">
             <div class="swiper-wrapper">
                 {% for item in fields.bloc_cards %}
                     <div class="swiper-slide card">
@@ -37,9 +39,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-        
-
-        
+        </div>  
     </div>
 </section>

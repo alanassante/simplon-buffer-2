@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const veils = section.querySelectorAll(".veil");
     const responsiveTrigger = window.matchMedia("(max-width: 1300px)");
     let currentMapData = section.querySelector(".map-title.active");
+    const swiperId = `#${section.querySelector(".map-swiper").id}`;
     // Map icons
     let icon_url = "";
     // Gestion corp
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // SWIPER
     const navPrev = section.querySelector(".prev");
     const navNext = section.querySelector(".next");
-    const map_swiper = new Swiper(".map-swiper", {
+    const map_swiper = new Swiper(`${swiperId}`, {
       slidesPerView: "auto",
       spaceBetween: 30,
       speed: 300,

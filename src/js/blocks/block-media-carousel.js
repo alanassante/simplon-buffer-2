@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   );
   sectionsMediaCarousel.forEach((section) => {
     const videoWrappers = section.querySelectorAll(".video-wrapper");
+    const swiperId = `#${section.querySelector(".media-carousel-swiper").id}`;
     function onYouTubeIframeAPIReady() {
       videoWrappers.forEach((videoWrapper, index) => {
         const cover = videoWrapper.querySelector(".cover");
@@ -51,22 +52,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
     }
 
-    function playVideo(video, cover) {
-      // Video
-
-      if (video.paused) {
-        video.play();
-        cover.classList.add("hidden");
-      } else {
-        video.pause();
-        cover.classList.remove("hidden");
-      }
-
-      // Iframe
-    }
     const navPrev = section.querySelector(".prev");
     const navNext = section.querySelector(".next");
-    const mediaCarouselSwiper = new Swiper(".media-carousel-swiper", {
+    const mediaCarouselSwiper = new Swiper(`${swiperId}`, {
       // loop: true,
       spaceBetween: 30,
       slidesPerView: 1,
@@ -82,5 +70,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
       },
     });
+
+    function playVideo(video, cover) {
+      // Video
+
+      if (video.paused) {
+        video.play();
+        cover.classList.add("hidden");
+      } else {
+        video.pause();
+        cover.classList.remove("hidden");
+      }
+
+      // Iframe
+    }
   });
 });

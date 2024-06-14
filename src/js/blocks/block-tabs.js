@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const navNext = section.querySelector(".next");
     const labelsString = pages.dataset.labels;
     const labels = labelsString.split("/-/");
-
-    const tabsSwiper = new Swiper(".tabs-swiper", {
+    const swiperId = `#${section.querySelector(".tabs-swiper").id}`;
+    const tabsSwiper = new Swiper(`${swiperId}`, {
       spaceBetween: 30,
       direction: "horizontal",
       slidesPerView: 1,

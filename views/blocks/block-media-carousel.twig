@@ -4,6 +4,7 @@
 
  */
 #}
+{% set randomId = random() %}
 <section class="block-media-carousel {{fields.style}} {% if fields.block_space != 'none' %} section-{{ fields.block_space }} {% endif %}{% if fields.space_bottom == false %} pb-0 {% endif %}{% if fields.space_top == false %} pt-0 {% endif %}" style="--top-mask-color:{{fields.top_mask_color}};--bottom-mask-color:{{fields.bottom_mask_color}};">
     <div class="container">
         {% if fields.title %}
@@ -15,7 +16,7 @@
             <div class="next"></div>
         </div>
         {% endif %}
-        <div class="media-carousel-swiper swiper">
+        <div id="swiper-{{ randomId }}" class="media-carousel-swiper swiper">
             <div class="swiper-wrapper">
             {% for item in fields.medias %}
                 {% if item.slide_content == "video" %}

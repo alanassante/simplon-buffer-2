@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const navPrev = section.querySelector(".prev");
     const navNext = section.querySelector(".next");
     const swiperBuffer = section.querySelector(".testimony-swiper");
+    const swiperId = `#${section.querySelector(".testimony-swiper").id}`;
     swiperBuffer.classList.add("testimony-swiper" + index);
-    const testimonySwiper = new Swiper(".testimony-swiper" + index, {
+    const testimonySwiper = new Swiper(`${swiperId}`, {
       loop: true,
       spaceBetween: 30,
       slidesPerView: 1,
