@@ -28,7 +28,7 @@ function block_listing_cards_render_callback( $block, $content = '', $is_preview
 
     // Regular tags
     $context['categories'] = \Timber::get_terms('category', array( 'hide_empty' => true, 'parent' => 0 )); 
-
+    $context['current_uri'] = $_SERVER['REQUEST_URI']; 
     $context['current_url'] = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $context['is_preview'] = $is_preview;
     
