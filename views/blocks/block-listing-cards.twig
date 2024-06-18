@@ -204,7 +204,7 @@
                     {% endfor %} 
                     
                     {% if distanciel != "" or alternance != "" %}
-                        <p class="additional-tag"><span>{{distanciel}}</span><span>{{alternance}}</span></p>
+                        <p class="additional-tag">{% if distanciel != "" %}<span>{{distanciel}}</span>{% endif %}{% if alternance != "" %}<span>{{alternance}}</span>{% endif %}</p>
                     {% endif %}
                     <picture class="picture">
                         <source
