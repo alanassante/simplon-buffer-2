@@ -119,7 +119,7 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "row",
+            "layout": "block",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -275,6 +275,25 @@
                             "parent_repeater": "field_6667f2971b915"
                         },
                         {
+                            "key": "field_66712442515ad",
+                            "label": "Couleur du masque",
+                            "name": "mask_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "enable_opacity": 0,
+                            "return_format": "string",
+                            "parent_repeater": "field_6667f2971b915"
+                        },
+                        {
                             "key": "field_6667f4e747703",
                             "label": "Placement de l'élément",
                             "name": "element_order",
@@ -393,5 +412,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1718096378
+    "modified": 1718691228
 }

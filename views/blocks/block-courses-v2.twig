@@ -49,8 +49,8 @@
                             <div class="cell">
                                 {% for sub_item in line.elements_to_display %}
                                     {% if sub_item.element_order == loop.parent.loop.index %}
-                                        <p class="post-title">
-                                            <span>{{ sub_item.element_link.title }}</span>
+                                        <div class="post-title">
+                                            <p>{{ sub_item.element_link.title }}</p>
                                             {% if sub_item.element_image %}
                                                 <picture class="thumbnail">
                                                     <source
@@ -63,8 +63,10 @@
                                                     >
                                                     <img class="fit-cover" src="{{ Image(sub_item.element_image).src }}" width="{{ Image(sub_item.element_image).width }}" height="{{ Image(sub_item.element_image).height }}" loading="lazy" alt="{{ Image(sub_item.element_image).alt }}" />
                                                 </picture>
+                                            {% else %}
+                                                <div class="mask" style="background-color:{{sub_item.mask_color}}"></div>
                                             {% endif %}
-                                        </p>
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                             </div>
