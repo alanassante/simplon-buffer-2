@@ -35,7 +35,7 @@
                     {% endfor %}
                     <div class="line" style="{{course_color}};">
                         <div class="main-category" style="--picto:url({{Image(line.line_head_picto).src}});">
-                            <h4 class="cat-title">
+                            <h4 class="cat-title {% if Image(line.line_head_picto).src %}picto{% endif %}">
                                 {{line.line_head_title}}
                             </h4>
                             {% if line.button.url %}
@@ -50,7 +50,7 @@
                                 {% for sub_item in line.elements_to_display %}
                                     {% if sub_item.element_order == loop.parent.loop.index %}
                                         <div class="post-title">
-                                            <p>{{ sub_item.element_link.title }}</p>
+                                            <a href="{{sub_item.element_link.url}}">{{ sub_item.element_link.title }}</a>
                                             {% if sub_item.element_image %}
                                                 <picture class="thumbnail">
                                                     <source

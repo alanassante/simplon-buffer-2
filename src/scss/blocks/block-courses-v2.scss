@@ -85,25 +85,26 @@ section.block-courses-v2 {
           position: relative;
           display: flex;
           align-items: center;
-          &.picto {
-            &::before {
-              content: "";
-              width: 45px;
-              height: 45px;
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size: 30px 30px;
-              background-image: var(--picto);
-              margin-right: 15px;
-              border-radius: 5px;
-              background-color: white;
-            }
+          height: fit-content;
+          &.picto::before {
+            content: "";
+            width: 45px;
+            min-width: 45px;
+            height: 45px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 30px 30px;
+            background-image: var(--picto);
+            margin-right: 15px;
+            border-radius: 5px;
+            background-color: white;
           }
         }
         .cta {
           padding: 0;
           margin-top: 15px;
           white-space: break-spaces;
+          height: fit-content;
         }
       }
 
@@ -122,12 +123,12 @@ section.block-courses-v2 {
           width: fit-content;
           margin: auto;
           cursor: pointer;
-          &:has(p:hover) {
-            p:hover {
+          &:has(a:hover) {
+            a:hover {
               color: white;
               opacity: 1;
             }
-            p {
+            a {
               opacity: 0;
             }
 
@@ -137,7 +138,7 @@ section.block-courses-v2 {
             }
           }
 
-          p {
+          a {
             color: black;
             font-size: 16px;
             text-decoration-line: underline;
