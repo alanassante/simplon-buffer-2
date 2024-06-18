@@ -20,18 +20,24 @@
     }
   }
   .additional-tag {
+    display: flex;
+    gap: 5px;
     z-index: 1;
-    color: white;
-    padding: 0 10px;
+
     position: absolute;
     top: 15px;
-    right: 25px;
-    background-color: black;
-    //styleName: Paragraph/label;
+    right: 15px;
+
     font-family: $font1;
     font-size: 15px;
     font-weight: 400;
     line-height: 25.5px;
+    span {
+      display: block;
+      background-color: black;
+      color: white;
+      padding: 0 10px;
+    }
   }
   .picture {
     width: calc(100% + 40px);
