@@ -70,7 +70,7 @@
 														<img src="{{ Image(picto).src }}" width="{{ Image(picto).width }}" height="{{ Image(picto).height }}" loading="lazy" alt="Logo menu"/>
 													</picture>
 												{% endif %}
-												<h5>{{sub_item.title}}</h5>
+												<h5><a href="{{sub_item.link}}">{{sub_item.title}}</a></h5>
 											</div>
 											{% if sub_item.children %}	
 												<ul class="links-list">

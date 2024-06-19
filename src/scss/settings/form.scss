@@ -299,31 +299,6 @@
     }
   }
 }
-@media screen and (max-width: $size6) {
-  .forminator-ui {
-    .forminator-pagination-steps {
-      &::after {
-        width: 200px;
-      }
-      .forminator-step {
-        .forminator-step-label {
-          &:hover {
-          }
-        }
-        &.forminator-current {
-          .forminator-step-label {
-          }
-        }
-        &-dot {
-        }
-        &-label {
-        }
-      }
-    }
-  }
-}
-
-// FORMULAIRES STATIQUES
 
 form:not(.forminator-ui) {
   padding: 30px;
@@ -444,3 +419,29 @@ form:not(.forminator-ui) {
     border-radius: 5px;
   }
 }
+
+@media screen and (max-width: $size6) {
+  .forminator-ui {
+    .forminator-pagination-steps {
+      &::after {
+        width: 200px;
+      }
+      .forminator-step {
+        .forminator-step-label {
+          &:hover {
+          }
+        }
+        &.forminator-current {
+          .forminator-step-label {
+          }
+        }
+        &-dot {
+        }
+        &-label {
+        }
+      }
+    }
+  }
+}
+
+// FORMULAIRES STATIQUES
