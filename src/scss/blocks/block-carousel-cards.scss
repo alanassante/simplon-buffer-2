@@ -43,7 +43,7 @@ section.block-carousel-cards {
     border-radius: 5px;
     transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     overflow: hidden;
-    height: fit-content !important;
+    // height: fit-content !important;
     &:not(.swiper-slide-visible) {
       opacity: 0.2;
     }

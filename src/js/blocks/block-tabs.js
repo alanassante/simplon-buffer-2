@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       breakpoints: {
         1200: {
-          autoHeight: false,
+          autoHeight: true,
           slidesPerView: 1,
           centeredSlides: true,
-          spaceBetween: 60,
+          spaceBetween: 0,
           direction: "vertical",
         },
       },
