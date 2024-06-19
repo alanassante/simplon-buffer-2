@@ -8,9 +8,17 @@ header {
   .main-category {
     color: rgba(var(--white-color), 1);
   }
-  .logo {
-    max-height: 45px;
+  a {
+    .logo {
+      max-height: 45px;
+      max-width: 130px;
+      img {
+        max-width: 130px;
+        max-height: 45px;
+      }
+    }
   }
+
   &.pinNav {
     top: 0;
     margin-top: 0;
