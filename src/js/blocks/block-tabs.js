@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       breakpoints: {
         1200: {
+          observer: true,
+          observeParents: true,
           autoHeight: true,
           slidesPerView: 1,
           centeredSlides: true,
