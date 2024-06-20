@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Initialisation de la carte
     mapboxgl.accessToken =
-      "pk.eyJ1IjoicmFpbGFiYWQiLCJhIjoiY2x2d2Q5Y2MzMWt3eTJsbnl0cWtoNm9iMyJ9.5FUlPMuByi6yoUNrp2U1Sg";
+      "pk.eyJ1IjoicmFpbGFiYWQiLCJhIjoiY2x4bmJqbTBsMDFvODJpczgxMnhxZHBpayJ9.SFaveqNhBtR41lCDh-IVfA";
     let currentZoom = responsiveTrigger.matches
       ? parseFloat(maps_switchers[0].dataset.zoomresponsive)
       : parseFloat(maps_switchers[0].dataset.zoom);
