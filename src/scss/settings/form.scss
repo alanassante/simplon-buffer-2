@@ -454,6 +454,10 @@ form:not(.forminator-ui) {
         font-weight: 700 !important;
       }
       .ginput_container {
+        span {
+          display: block;
+          height: fit-content;
+        }
         .ginput_left,
         .ginput_right {
           inline-size: 100%;
