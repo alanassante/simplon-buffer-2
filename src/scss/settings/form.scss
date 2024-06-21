@@ -420,8 +420,12 @@ form:not(.forminator-ui) {
 }
 
 .gform_wrapper {
+  padding-top: 15px;
   .gform-body {
     .gfield {
+      .ginput_complex {
+        display: block;
+      }
       .gfield_label {
       }
       input[type="submit"] {
