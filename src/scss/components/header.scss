@@ -408,6 +408,11 @@ header {
 
               .nav-link {
                 text-decoration: none;
+                .cta {
+                  &::after {
+                    display: none;
+                  }
+                }
                 p {
                   font-size: 16px;
                 }
