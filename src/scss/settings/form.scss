@@ -423,9 +423,29 @@ form:not(.forminator-ui) {
     .gfield {
       .gfield_label {
       }
+      input[type="submit"] {
+        font-family: $font1;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        line-height: 28px;
+        white-space: nowrap;
+        text-decoration: none;
+        user-select: none;
+        padding: 10px 20px;
+        border: none;
+        width: fit-content;
+        overflow: hidden;
+        transition: all 300ms;
+        background-color: rgba(var(--main-color), 1);
+        color: rgba(var(--white-color), 1);
+        font-weight: 700;
+      }
       .ginput_container {
         textarea,
-        select,
         input[type="text"],
         input[type="tel"],
         input[type="email"],
@@ -440,27 +460,6 @@ form:not(.forminator-ui) {
           &:focus {
             border: solid 1px #ce0033;
           }
-        }
-        input[type="submit"] {
-          font-family: $font1;
-          cursor: pointer;
-          position: relative;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 18px;
-          line-height: 28px;
-          white-space: nowrap;
-          text-decoration: none;
-          user-select: none;
-          padding: 10px 20px;
-          border: none;
-          width: fit-content;
-          overflow: hidden;
-          transition: all 300ms;
-          background-color: rgba(var(--main-color), 1);
-          color: rgba(var(--white-color), 1);
-          font-weight: 700;
         }
 
         select {
