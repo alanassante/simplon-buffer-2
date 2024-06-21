@@ -445,6 +445,10 @@ form:not(.forminator-ui) {
         font-weight: 700 !important;
       }
       .ginput_container {
+        .ginput_left,
+        .ginput_right {
+          inline-size: 100%;
+        }
         textarea,
         input[type="text"],
         input[type="tel"],
