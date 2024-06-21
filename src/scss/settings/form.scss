@@ -427,6 +427,10 @@ form:not(.forminator-ui) {
         display: block;
       }
       .gfield_label {
+        font-family: $font2;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 19.1px;
       }
       input[type="submit"] {
         font-family: $font1 !important;
@@ -473,8 +477,6 @@ form:not(.forminator-ui) {
 
         select {
           width: 100%;
-          padding-left: 45px;
-          height: 55px;
           font-size: 16px;
           font-weight: 700;
           font-family: $font2;
