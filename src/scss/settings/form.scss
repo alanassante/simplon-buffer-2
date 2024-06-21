@@ -301,7 +301,6 @@
 }
 
 form:not(.forminator-ui) {
-  padding: 30px;
   display: flex;
   .input-wrapper {
     display: flex;
@@ -418,7 +417,9 @@ form:not(.forminator-ui) {
     justify-content: center;
     border-radius: 5px;
   }
+}
 
+.gform_wrapper {
   .gform-body {
     .gfield {
       .gfield_label {
