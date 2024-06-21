@@ -26,7 +26,7 @@
                     type="image/jpeg"
                     srcset="{{ Image(item.logo).src|tojpg }}, {{ Image(item.logo).src|retina(2)|tojpg }} 2x"
                     >
-                    <img src="{{ Image(item.logo).src }}" width="{{ Image(item.logo).width }}" height="{{ Image(item.logo).height }}" loading="lazy" alt="{{ Image(item.logo).alt }}" />
+                    <img class="fit-contain" src="{{ Image(item.logo).src }}" width="{{ Image(item.logo).width }}" height="{{ Image(item.logo).height }}" loading="lazy" alt="{{ Image(item.logo).alt }}" />
                 </picture>
             </a>
             {% endif %}
