@@ -92,14 +92,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
         linksList.dataset.maxHeight = `${linksList.offsetHeight}px`;
         linksList.style.maxHeight = "0px";
         subNavItem.addEventListener("click", function() {
-          subNavItem.classList.toggle("open");
-          if (linksList.style.maxHeight == "0px") {
-            linksLists.forEach((buffer) => {
-              buffer.style.maxHeight = "0px";
+          if (!subNavItem.classList.contains("open")) {
+            subNavItems.forEach((bufferItem) => {
+              bufferItem.classList.remove("open");
+              const bufferList = bufferItem.querySelector(".links-list");
+              if (bufferList) {
+                bufferList.style.maxHeight = "0px";
+              }
             });
-            linksList.style.maxHeight = `${linksList.dataset.maxHeight}`;
+            subNavItem.classList.add("open");
+            if (linksList) {
+              linksList.style.maxHeight = `${linksList.dataset.maxHeight}`;
+            }
           } else {
-            linksList.style.maxHeight = "0px";
+            subNavItem.classList.remove("open");
+            if (linksList) {
+              linksList.style.maxHeight = "0px";
+            }
           }
         });
       }
