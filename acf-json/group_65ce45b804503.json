@@ -53,7 +53,7 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
+            "layout": "row",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -219,11 +219,57 @@
                     "parent_repeater": "field_65cf5aa217917"
                 },
                 {
+                    "key": "field_66743fcec5d3b",
+                    "label": "Cluster radius",
+                    "name": "cluster_radius",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 25,
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65cf5aa217917"
+                },
+                {
+                    "key": "field_66744006c5d3c",
+                    "label": "Cluster zoom",
+                    "name": "cluster_zoom",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 8,
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65cf5aa217917"
+                },
+                {
                     "key": "field_65d0aa7a99f81",
                     "label": "Campus à afficher",
                     "name": "campus_to_display",
                     "aria-label": "",
-                    "type": "post_object",
+                    "type": "repeater",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -232,19 +278,63 @@
                         "class": "",
                         "id": ""
                     },
-                    "post_type": [
-                        "campuses"
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Ajouter un élément",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_6674564d23b04",
+                            "label": "Campus",
+                            "name": "campus",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "campuses"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "object",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": [],
+                            "parent_repeater": "field_65d0aa7a99f81"
+                        },
+                        {
+                            "key": "field_6674567923b05",
+                            "label": "Exclure du swiper",
+                            "name": "exclude",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "parent_repeater": "field_65d0aa7a99f81"
+                        }
                     ],
-                    "post_status": [
-                        "publish"
-                    ],
-                    "taxonomy": "",
-                    "return_format": "object",
-                    "multiple": 1,
-                    "allow_null": 0,
-                    "bidirectional": 0,
-                    "ui": 1,
-                    "bidirectional_target": [],
                     "parent_repeater": "field_65cf5aa217917"
                 }
             ]
@@ -335,5 +425,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1713795654
+    "modified": 1718900360
 }

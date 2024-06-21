@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const swiperId = `#${section.querySelector(".map-swiper").id}`;
     // Map icons
     let icon_url = "";
+
     // Gestion corp
     if (document.getElementsByTagName("body")[0].classList.contains("corp")) {
       icon_url =
@@ -85,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let current_slides = section.querySelectorAll(
           ".map-swiper .swiper-wrapper .swiper-slide"
         );
-        addLayers(current_slides);
+        let current_title = section.querySelector(".map-title.active");
+        addLayers(current_slides, current_title);
+
         map.on("zoomend", () => {
           let currentZoom = responsiveTrigger.matches
             ? parseFloat(currentMapData.dataset.zoomresponsive)
@@ -184,18 +187,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         zoom: currentZoom,
       });
     }
+
     function filterSlides(slides, filterValue, slideBuffer, swiper) {
       slides.forEach((slide) => {
-        if (slide.dataset.mapTitle == filterValue) {
-          swiper.append(slide);
-        } else {
-          slideBuffer.append(slide);
+        if (!slide.dataset.exclude) {
+          if (slide.dataset.mapTitle == filterValue) {
+            swiper.append(slide);
+          } else {
+            slideBuffer.append(slide);
+          }
         }
       });
     }
-    function addLayers(current_slides) {
+
+    function addLayers(current_slides, map_switcher) {
       let data_geoJSON = generateGeoJSONFromSlides(current_slides);
-      console.log(data_geoJSON);
+
       // Clearing map before adding new layers + source
       if (typeof map.getLayer("clusters") !== "undefined")
         map.removeLayer("clusters");
@@ -210,8 +217,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         type: "geojson",
         data: data_geoJSON,
         cluster: true,
-        clusterMaxZoom: 8, // Zoom maximum
-        clusterRadius: 25, // par défaut 50
+        clusterMaxZoom: parseInt(map_switcher.dataset.clusterzoom), // Zoom maximum
+        clusterRadius: parseInt(map_switcher.dataset.clusterradius), // par défaut 50
       });
       map.addLayer({
         id: "clusters",
@@ -238,7 +245,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           "text-size": 15,
         },
       });
-
       // Layer de points n'étant pas en cluster
       map.addLayer({
         id: "places",
@@ -251,6 +257,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
       });
     }
+
     function generateGeoJSONFromSlides(DOMElementArray) {
       let data_geoJSON = {
         type: "FeatureCollection",

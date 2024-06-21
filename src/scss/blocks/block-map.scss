@@ -126,6 +126,9 @@ section.block-map {
       border-radius: 5px;
       background-color: rgba(var(--blue-light), 1);
       transition: background-color 0.3s ease-in-out;
+      &.exclude {
+        display: none;
+      }
       &-active {
         background-color: #e5e5ef;
       }

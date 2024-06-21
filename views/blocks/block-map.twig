@@ -13,12 +13,12 @@
         {% endif %}
 
             <div class="nav-bar">
-                
                 {% for map in fields.maps_contexts %}
-                    <h3 class="map-title {% if fields.maps_contexts|length < 2 %}solo{% endif %} {% if loop.index == 1 %}active{% endif %}" data-title="{{map.title|lower}}" data-map="{{map.adress_url}}" data-long={{map.center_long}} data-lat={{map.center_lat}} data-zoom="{{map.zoom}}" data-maxzoom="{{map.maxzoom}}" data-zoomresponsive="{{map.zoomresponsive}}">{{map.title}}</h3>
+                    <h3 class="map-title {% if fields.maps_contexts|length < 2 %}solo{% endif %} {% if loop.index == 1 %}active{% endif %}" data-clusterzoom="{{map.cluster_zoom}}" data-clusterradius="{{map.cluster_radius}}"  data-title="{{map.title|lower}}" data-map="{{map.adress_url}}" data-long={{map.center_long}} data-lat={{map.center_lat}} data-zoom="{{map.zoom}}" data-maxzoom="{{map.maxzoom}}" data-zoomresponsive="{{map.zoomresponsive}}">{{map.title}}</h3>
                 {% endfor %}
                 
             </div>
+        
         
         <div id="map-wrapper-{{random_id}}" 
             class="map-wrapper" 
@@ -38,18 +38,22 @@
             <div class="veil"></div>
             <div class="swiper-wrapper">
                 {% for map in fields.maps_contexts %}
-                    {% for campus in map.campus_to_display %}
-                        {% set campus_lat = campus.address_url|split('@')[1]|split(',')[0] %}
-                        {% set campus_long = campus.address_url|split('@')[1]|split(',')[1] %}
-                        <div class="swiper-slide" data-map-title="{{map.title|lower}}" data-long="{{campus_long}}" data-lat="{{campus_lat}}">
-                            <h4 class="title">{{ Post(campus).title }}</h4>
-                            <p class="address">{{ campus.address }}</p>
-                            {% if campus.cta.url %}
-                                <a href="{{ campus.cta.url }}" {% if campus.cta.target %}target="{{ campus.cta.target }}"{% endif %} {% if campus.cta.target %}rel="noopener"{% endif %} class="cta secondary">
-                                    <span class="cta-label">{{ campus.cta.title }}</span>
-                                </a>
-                            {% endif %}
-                        </div>
+                    {% for item in map.campus_to_display %}
+
+                            {% set campus = item.campus %}
+                            {% set campus_lat = campus.address_url|split('@')[1]|split(',')[0] %}
+                            {% set campus_long = campus.address_url|split('@')[1]|split(',')[1] %}
+                        
+                            <div class="swiper-slide {% if item.exclude %}exclude{% endif %}"  data-map-title="{{map.title|lower}}" data-long="{{campus_long}}" data-lat="{{campus_lat}}">
+                                <h4 class="title">{{ Post(campus).title }}</h4>
+                                <p class="address">{{ campus.address }}</p>
+                                {% if campus.cta.url %}
+                                    <a href="{{ campus.cta.url }}" {% if campus.cta.target %}target="{{ campus.cta.target }}"{% endif %} {% if campus.cta.target %}rel="noopener"{% endif %} class="cta secondary">
+                                        <span class="cta-label">{{ campus.cta.title }}</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+
                     {% endfor %}
                 {% endfor %} 
             </div>
