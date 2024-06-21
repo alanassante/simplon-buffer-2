@@ -411,12 +411,78 @@ form:not(.forminator-ui) {
   }
 
   .cta,
-  btn {
+  .btn {
     height: 55px;
     text-align: center;
     display: flex;
     justify-content: center;
     border-radius: 5px;
+  }
+
+  .gform-body {
+    .gfield {
+      .gfield_label {
+      }
+      .ginput_container {
+        textarea,
+        select,
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="number"],
+        select {
+          border-radius: 3px;
+          width: 100%;
+          background-color: rgba(var(--black-10), 1);
+          color: rgba(var(--black-40), 1);
+          border: none;
+          padding: 10px 15px;
+          &:focus {
+            border: solid 1px #ce0033;
+          }
+        }
+        nput[type="submit"] {
+          font-family: $font1;
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 18px;
+          line-height: 28px;
+          white-space: nowrap;
+          text-decoration: none;
+          user-select: none;
+          padding: 10px 20px;
+          border: none;
+          width: fit-content;
+          overflow: hidden;
+          transition: all 300ms;
+          background-color: rgba(var(--main-color), 1);
+          color: rgba(var(--white-color), 1);
+          font-weight: 700;
+        }
+
+        select {
+          width: 100%;
+          padding-left: 45px;
+          height: 55px;
+          font-size: 16px;
+          font-weight: 700;
+          font-family: $font2;
+          position: relative;
+          background-image: url("data:image/svg+xml,%3Csvg width='21' height='20' viewBox='0 0 21 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.16602 0.909091C1.16602 0.683157 1.34917 0.5 1.57511 0.5H7.93874C8.16468 0.5 8.34783 0.683156 8.34783 0.909091V7.27273C8.34783 7.49866 8.16468 7.68182 7.93874 7.68182H1.57511C1.34917 7.68182 1.16602 7.49866 1.16602 7.27273V0.909091ZM12.9842 0.909091C12.9842 0.683157 13.1674 0.5 13.3933 0.5H19.7569C19.9829 0.5 20.166 0.683156 20.166 0.909091V7.27273C20.166 7.49866 19.9829 7.68182 19.7569 7.68182H13.3933C13.1674 7.68182 12.9842 7.49866 12.9842 7.27273V0.909091ZM1.16602 12.7273C1.16602 12.5013 1.34917 12.3182 1.57511 12.3182H7.93874C8.16468 12.3182 8.34783 12.5013 8.34783 12.7273V19.0909C8.34783 19.3168 8.16468 19.5 7.93874 19.5H1.57511C1.34917 19.5 1.16602 19.3168 1.16602 19.0909V12.7273ZM12.9842 12.7273C12.9842 12.5013 13.1674 12.3182 13.3933 12.3182H19.7569C19.9829 12.3182 20.166 12.5013 20.166 12.7273V19.0909C20.166 19.3168 19.9829 19.5 19.7569 19.5H13.3933C13.1674 19.5 12.9842 19.3168 12.9842 19.0909V12.7273Z' stroke='black'/%3E%3C/svg%3E%0A");
+          background-position: 15px center;
+          background-repeat: no-repeat;
+          background-size: 20px 20px;
+          border-radius: 5px;
+          border: none;
+          -moz-appearance: none; /* Firefox */
+          -webkit-appearance: none; /* Safari and Chrome */
+          appearance: none;
+        }
+      }
+    }
   }
 }
 
