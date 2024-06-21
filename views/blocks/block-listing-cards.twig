@@ -228,8 +228,6 @@
                     {% endif %}
     
                     <h4 class="title">
-                        <p>{{item.alternative_link.url}}</p>
-                        <p>{{current_uri}}</p>
                         {% if item.alternative_link.url ==  current_uri %}
                             <span>
                                 {% if fields.listing_type == "sessions" %}{{item.short_title}}{% else %}{{item.title}}{% endif %} 
