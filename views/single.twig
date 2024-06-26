@@ -95,7 +95,10 @@
                         <a href="https://twitter.com/intent/tweet?url={{  post.link  }}" class="twitter share"></a>
                     {% endif %}
                     <p href="#" class="share-link share" onClick="copyClipboard(event)"></p>
-                    <a href="mailto:" class="mail share"></a>
+                    {% if fields.mail_adress%}
+                        <a href="mailto:{{fields.mail_adress}}" class="mail share"></a>
+                    {% endif %}
+
                 </div>
             </div>
         </aside>
