@@ -423,6 +423,8 @@ form:not(.forminator-ui) {
   .gform-body {
     padding-top: 15px;
     .gfield {
+      display: flex;
+      flex-direction: column;
       .ginput_complex {
         display: block;
       }
