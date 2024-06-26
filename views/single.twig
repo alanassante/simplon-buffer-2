@@ -85,10 +85,15 @@
                     <a href="{{fields.cta_block_link.url}}" class="cta primary white">{{fields.cta_block_link.title}}</a>
                 {% endif %}
                 <div class="socials">
-    
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link }}" class="facebook share"></a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{  post.link  }}" class="linkedin share"></a>
-                    <a href="https://twitter.com/intent/tweet?url={{  post.link  }}" class="twitter share"></a>
+                    {% if fields.display_fb %}
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link }}" class="facebook share"></a>
+                    {% endif %}
+                    {% if fields.display_ln %}
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{  post.link  }}" class="linkedin share"></a>
+                    {% endif %}
+                    {% if fields.display_tw %}
+                        <a href="https://twitter.com/intent/tweet?url={{  post.link  }}" class="twitter share"></a>
+                    {% endif %}
                     <p href="#" class="share-link share" onClick="copyClipboard(event)"></p>
                     <a href="mailto:" class="mail share"></a>
                 </div>

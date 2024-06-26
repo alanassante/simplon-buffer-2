@@ -151,11 +151,13 @@
 								{% if socials|length > 0 %}
 								<ul class="socials">
 									{% for item in socials %}
+										{% if item.link.url %}
 										<li>
-											<a href="{{ item.link }}" target="_blank" rel="noopener" style="--picto:url({{ Image(item.logo).src }})">
+											<a href="{{ item.link.url }}" target="_blank" rel="noopener" style="--picto:url({{ Image(item.logo).src }})">
 												social
 											</a>
 										</li>
+										{% endif %}
 									{% endfor %}
 								</ul>
 								{% endif %}
