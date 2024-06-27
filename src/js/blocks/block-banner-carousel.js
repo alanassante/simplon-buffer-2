@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const navNext = section.querySelector(".banner-swiper-nav-next");
     const pages = section.querySelector(".banner-swiper-pages");
     const swiperId = `#${section.querySelector(".banner-swiper").id}`;
-    const slides = section.querySelectorAll(".swiper-slide");
 
     const bannerSwiper = new Swiper(`${swiperId}`, {
       spaceBetween: 30,
@@ -37,9 +36,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       on: {
         init: function() {
           setSlideHeight(this);
+          this.update();
         },
         slideChangeTransitionEnd: function() {
           setSlideHeight(this);
+          this.update();
         },
       },
     });
@@ -47,11 +48,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(`${swiperId} .swiper-slide`).css({ height: "auto" });
       var currentSlide = that.activeIndex;
       var newHeight = $(that.slides[currentSlide]).height();
-
-      $(`${swiperId}  .swiper-wrapper,.swiper-slide`).css({
+      $(`${swiperId} .swiper-wrapper,${swiperId} .swiper-slide`).css({
         height: newHeight,
       });
-      that.update();
     }
   });
 });
