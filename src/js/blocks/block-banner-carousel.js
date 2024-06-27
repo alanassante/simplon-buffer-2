@@ -43,13 +43,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         },
       },
     });
-  });
-  function setSlideHeight(that) {
-    $(".swiper-slide").css({ height: "auto" });
-    var currentSlide = that.activeIndex;
-    var newHeight = $(that.slides[currentSlide]).height();
+    function setSlideHeight(that) {
+      $(`${swiperId} .swiper-slide`).css({ height: "auto" });
+      var currentSlide = that.activeIndex;
+      var newHeight = $(that.slides[currentSlide]).height();
 
-    $(".swiper-wrapper,.swiper-slide").css({ height: newHeight });
-    that.update();
-  }
+      $(`${swiperId}  .swiper-wrapper,.swiper-slide`).css({
+        height: newHeight,
+      });
+      that.update();
+    }
+  });
 });
