@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
     });
     function setSlideHeight(that) {
+      console.log($(`${swiperId} .swiper-slide`));
       $(`${swiperId} .swiper-slide`).css({ height: "auto" });
       var currentSlide = that.activeIndex;
       var newHeight = $(that.slides[currentSlide]).height();
