@@ -425,9 +425,7 @@ form:not(.forminator-ui) {
     .gfield {
       display: flex;
       flex-direction: column;
-      .ginput_complex {
-        display: block;
-      }
+
       .gfield_label {
         font-family: $font2;
         font-size: 14px;
@@ -470,6 +468,7 @@ form:not(.forminator-ui) {
         input[type="email"],
         input[type="number"],
         select {
+          height: 42px;
           border-radius: 3px;
           width: 100%;
           background-color: rgba(var(--black-10), 1);
