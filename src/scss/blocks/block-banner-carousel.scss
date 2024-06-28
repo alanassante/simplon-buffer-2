@@ -41,6 +41,7 @@ section.block-banner-carousel {
     z-index: 1;
     border-radius: 5px;
     align-items: center;
+    overflow-y: clip;
 
     &.reversed {
       flex-direction: row-reverse;
